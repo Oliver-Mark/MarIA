@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>MarIA - Medicina Especializada</title>
         <link rel="stylesheet" href="css/login.css">
     </head>
     <body>
@@ -21,11 +21,21 @@
                     <p>Senha</p>
                     <input type="password" class="senha-icon" placeholder="Insira sua senha aqui..." required>
                 </div>
-                <a href="cadastro.html" class="esq">Esqueci minha senha</a>
+                <button type="button" id="btnRecuperar" class="esq-btn">Esqueci minha senha</button>
                 <button type="submit" class="btn">
                     ENTRAR
                 </button>           
             </section>        
         </div>
+        <dialog id="modalEsqueci">
+            <h3>Recuperar senha</h3>
+            <p>Insira seu e-mail para receber as intruções de recuperação:</p>
+            <input type="email" placeholder="Digite seu e-mail aqui..." required autofocus>
+            <div class="modal-acoes">
+                <button id="btnEnviar">Enviar</button>
+                <button id="btnFechar" class="btn-cancelar">Cancelar</button>
+            </div>
+        </dialog>
+        <script src="Js/esqueci.js"></script>
     </body>
 </html>
