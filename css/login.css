@@ -32,6 +32,7 @@
     border-radius: 5px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 16px;
+    font-style: italic;
     padding-left: 40px;
 }
 
@@ -81,6 +82,11 @@
 }
 
 .btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;
     padding: 10px;
     background-color: #0cbaa0;
@@ -91,6 +97,11 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    background-image: url("../img/log-in.png");
+    background-repeat: no-repeat;
+    background-position: right 115px center;
+    background-size: 25px 25px;
+    padding-right: 40px;
 }
 
 dialog[open] {
@@ -123,6 +134,7 @@ dialog input {
     border-radius: 5px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 16px;
+    font-style: italic;
     margin-bottom: 10px;
 }
 
@@ -151,5 +163,6 @@ dialog button:hover {
 
 .btn:hover {
     background-color: #0a9e8c;
-    color: white;  
+    color: white;
+    background-image: url("../img/log-in branco.png");
 }

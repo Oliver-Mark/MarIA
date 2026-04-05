@@ -35,9 +35,10 @@
     width: 100%;
     min-width: 300px;
     border: 2px solid black;
-        border-radius: 5px;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        font-size: 16px;
+    border-radius: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .campo label {
@@ -57,9 +58,40 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+    background-image: url("../img/next.png");
+    background-repeat: no-repeat;
+    background-position: right 60px center;
+    background-size: 25px 25px;
+    padding-right: 40px;
 }
 
 .btn-continuar:hover {
     background-color: #0a9e8c;
     color: white;  
+    background-image: url("../img/next-branco.png");
+}
+
+.btn-voltar {
+    width: 40%;
+    padding: 10px;
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    background-image: url("../img/back-branco.png");
+    background-repeat: no-repeat;
+    background-position: left 20px center;
+    background-size: 25px 25px;
+    padding-left: 40px;
+}
+
+.btn-voltar:hover {
+    background-color: #a2c7c1;
+    color: black;
+    background-image: url("../img/back.png");  
 }
