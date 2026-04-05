@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/selecao.css">
 </head>
 <body>
@@ -15,11 +19,11 @@
             </section>
             <script src="Js/carrossel.js"></script>
         <section id="drops">
-            <img src="img/Logo MarIA recortado.jpg" alt="Logo">
+            <img src="img/Logo-Maria-preto.png" alt="Logo">
             <div class="selecao">
                 <div class="campo">
                     <label for="clinica">Selecione a clínica:</label><br>
-                    <select id="clinica" name="clinica" class="select-estilizado">
+                    <select id="clinica" name="clinica" class="select-estilizado" required>
                         <option value="" disabled selected>Selecione a clínica</option>
                         <option value="centro">Clínica Centro</option>
                         <option value="sul">Clínica Sul</option>
@@ -30,7 +34,7 @@
                 </div>
                 <div class="campo">
                     <label for="consultorio">Selecione o consultório:</label><br>
-                    <select id="consultorio" name="consultorio" class="select-estilizado">
+                    <select id="consultorio" name="consultorio" class="select-estilizado" required>
                         <option value="" disabled selected>Selecione o consultório</option>
                         <option value="consultorio1">Consultório 1</option>
                         <option value="consultorio2">Consultório 2</option>
@@ -42,8 +46,10 @@
             </div>
             <button type="button" class="btn-continuar">
                 CONTINUAR
+                <i class="fa-solid fa-circle-arrow-right"></i>
             </button>
             <button type="button" class="btn-voltar" onclick="window.location.href='login.html'">
+                <i class="fa-solid fa-circle-arrow-left"></i>
                 VOLTAR
             </button>
         </section>

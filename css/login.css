@@ -48,25 +48,14 @@
     padding: 10px;
     border: 0px solid #ccc;
     border-bottom: 2px solid black;
-    border-radius: 5px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 16px;
+    border-bottom-right-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    width: 100%;
+}
+
+input::placeholder {
     font-style: italic;
-    padding-left: 40px;
-}
-
-.email-icon {
-    background-image: url('../img/user.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 5px;
-}
-
-.senha-icon {
-    background-image: url('../img/senha.png');
-    background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 5px;
 }
 
 .campo {
@@ -75,17 +64,33 @@
     width: 100%;
 }
 
-.campo p {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin-bottom: 5px;
+.input-container {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0 0 0 10px;
 }
 
-#login a {
-    margin-top: 20px;
-    margin-bottom: 20px;
+.input-container i {
     color: black;
-    text-decoration: none;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.1rem;
+    margin-right: 10px;
+}
+
+.input-container input {
+    background: transparent;
+    padding: 12px 0;
+    width: 100%;
+    outline: none;
+}
+
+.campo p {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .esq-btn {
@@ -93,10 +98,11 @@
     margin: 15px 0;
     border: none;
     background-color: transparent;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: black;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
 }
 
@@ -105,22 +111,21 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    justify-content: space-evenly;
     width: 100%;
     padding: 10px;
-    background-color: #0cbaa0;
+    gap: 10px;
+    background-color: #5daae0;
     color: black;
     font-weight: bold;
     font-size: 18px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Inter', sans-serif;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-image: url("../img/log-in.png");
-    background-repeat: no-repeat;
-    background-position: right 115px center;
-    background-size: 25px 25px;
-    padding-right: 40px;
+}
+
+.btn i {
+    font-size: 1.2rem;
 }
 
 dialog[open] {
@@ -135,12 +140,12 @@ dialog[open] {
 }
 
 dialog p {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
 }
 
 dialog h3 {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 22px;
     margin-bottom: 5px;
 }
@@ -151,9 +156,8 @@ dialog input {
     border: 0px solid #ccc;
     border-bottom: 2px solid black;
     border-radius: 5px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 16px;
-    font-style: italic;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
     margin-bottom: 10px;
 }
 
@@ -165,23 +169,22 @@ dialog div {
 
 dialog button {
     padding: 10px 20px;
-    background-color: #0cbaa0;
+    background-color: #5daae0;
     color: black;
     font-weight: bold;
-    font-size: 16px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 dialog button:hover {
-    background-color: #0a9e8c;
+    background-color: #158de2;
     color: white;  
 }
 
 .btn:hover {
-    background-color: #0a9e8c;
+    background-color: #158de2;
     color: white;
-    background-image: url("../img/log-in branco.png");
 }
