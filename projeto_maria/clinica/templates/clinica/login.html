@@ -6,7 +6,7 @@
 
 <div class="flex min-h-screen bg-gray-50">
     
-    <section id="carrosel" class="hidden md:block md:w-1/2 relative bg-black">
+    <section id="capa" class="hidden md:block md:w-1/2 relative bg-black">
         <img src="{% static 'clinica/img/Tela Inicial.jpeg' %}" alt="Imagem inicial" class="w-full h-full object-cover">
     </section>
 
@@ -60,19 +60,19 @@
     </section>        
 </div>
 
-<dialog id="modalEsqueci" class="backdrop:bg-black/50 p-6 rounded-xl shadow-2xl w-11/12 max-w-md m-auto">
-    <h3 class="text-xl font-bold text-gray-800 mb-2">Recuperar senha</h3>
+<dialog id="modalEsqueci" class="backdrop:bg-black/50 p-6 rounded-xl shadow-2xl w-11/12 max-w-md m-auto border-4 border-blue-500">
+    <h3 class="text-xl font-bold text-gray-800 mb-2 flex justify-center drop-shadow-lg">Recuperar senha</h3>
     <p class="text-sm text-gray-600 mb-5">Insira seu e-mail para receber as instruções de recuperação:</p>
     
     <input type="email" placeholder="Digite seu e-mail aqui..." required 
-        class="block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none mb-6">
+        class="block w-full px-4 py-1 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 outline-none mb-6 placeholder:italic placeholder:text-sm">
     
     <div class="flex justify-end gap-3">
-        <button id="btnFechar" class="px-5 py-2 text-gray-600 font-semibold hover:bg-gray-100 rounded-lg transition-colors">
-            CANCELAR
+        <button id="btnFechar" class="px-5 py-1 font-semibold hover:bg-gray-100 border-2 border-[#5DAAE0] text-[#5DAAE0] rounded-full transition-colors">
+            Cancelar
         </button>
-        <button id="btnEnviar" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors shadow">
-            ENVIAR
+        <button id="btnEnviar" class="px-5 py-1 bg-[#5DAAE0] hover:bg-blue-700 hover:text-white text-black font-bold rounded-full transition-colors shadow">
+            Enviar
         </button>
     </div>
 </dialog>

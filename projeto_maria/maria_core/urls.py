@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # Esta linha diz: quando não digitar nada após o endereço, abra a página de login
     path('', views.pagina_login, name='login'), 
+    path('selecao/', views.pagina_selecao, name='selecao'),
 ]

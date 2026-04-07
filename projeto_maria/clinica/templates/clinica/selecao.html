@@ -1,58 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/selecao.css">
-</head>
-<body>
-    <div class="container">
-        <section id="carrosel">
-                <img src="img/Carrossel imagem 1.jpg" alt="Carrossel imagem 1" class="slide active">
-                <img src="img/Carrossel imagem 2.jpeg" alt="Carrossel imagem 2" class="slide">
-                <img src="img/Carrossel imagem 3.jpg" alt="Carrossel imagem 3" class="slide">
-            </section>
-            <script src="Js/carrossel.js"></script>
-        <section id="drops">
-            <img src="img/Logo-Maria-preto.png" alt="Logo">
-            <div class="selecao">
-                <div class="campo">
-                    <label for="clinica">Selecione a clínica:</label><br>
-                    <select id="clinica" name="clinica" class="select-estilizado" required>
-                        <option value="" disabled selected>Selecione a clínica</option>
-                        <option value="centro">Clínica Centro</option>
-                        <option value="sul">Clínica Sul</option>
-                        <option value="leste">Clínica Leste</option>
-                        <option value="oeste">Clínica Oeste</option>
-                        <option value="norte">Clínica Norte</option>
+{% extends 'clinica/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="flex min-h-screen bg-gray-50">
+    <section id="capa" class="hidden md:block md:w-1/2 relative bg-black">
+        <img src="{% static 'clinica/img/Tela selecao.jpeg' %}" alt="Imagem seleção" class="w-full h-full object-cover">
+    </section>
+    <section id="selecao" class="w-full md:w-1/2 flex items-center justify-center flex-col">
+        <div class="flex justify-center mb-20">
+            <img src="{% static 'clinica/img/Logo-Maria-preto.png' %}" alt="Logo MarIA" class="h-16 object-contain">
+        </div>
+        <div class="flex flex-col w-full max-w-md bg-white p-8 border-2 border-[#5DAAE0] rounded-2xl shadow-xl md:w-2/4 md:shadow-2xl md:bg-gray-100 md:border-2 md:border-[#5DAAE0]">
+            <h3 class="flex justify-center text-center font-bold text-xl mb-2 drop-shadow-lg">Selecione<br>onde vai atender</h3>
+            <form method="POST" action="" class="space-y-6">
+                {% csrf_token %}
+                
+                <div class="flex flex-col">
+                    <label class="block text-base font-bold text-gray-700 mb-2 drop-shadow-lg">Unidade</label>
+                    <select name="clinica_id" required autofocus class="block w-full px-2 py-1 border-2 border-[#5DAAE0] rounded-full focus:ring-2 focus:ring-[#5DAAE0] focus:border-[#5DAAE0] outline-none transition-all">
+                        <option value="" disabled selected class="italic">Selecione a unidade...</option>
+                        <option value="unidade1">Unidade 1</option>
+                        <option value="unidade2">Unidade 2</option>
                     </select>
                 </div>
-                <div class="campo">
-                    <label for="consultorio">Selecione o consultório:</label><br>
-                    <select id="consultorio" name="consultorio" class="select-estilizado" required>
-                        <option value="" disabled selected>Selecione o consultório</option>
-                        <option value="consultorio1">Consultório 1</option>
-                        <option value="consultorio2">Consultório 2</option>
-                        <option value="consultorio3">Consultório 3</option>
-                        <option value="consultorio4">Consultório 4</option>
-                        <option value="consultorio5">Consultório 5</option>
+                <div class="flex flex-col">
+                    <label class="blck text-base font-bold text-gray-700 mb-2 drop-shadow-lg">Consultório</label>
+                    <select name="consultorio_id" required class="block w-full px-2 py-1 border-2 border-[#5DAAE0] rounded-full focus:ring-2 focus:ring-[#5DAAE0] focus:border-[#5DAAE0] outline-none transition-all">
+                        <option value="" disabled selected>Selecione o consultório...</option>
+                        <option value="1">Consultório 1</option>
+                        <option value="2">Consultório 2</option>
                     </select>
                 </div>
+            </form>
+            <div class="flex justify-center mt-10">
+                <button type="submit" class="w-1/2 border-2 border-[#5DAAE0] rounded-full font-bold text-[#5DAAE0] gap-2 py-1 text-xl hover:bg-blue-700 hover:text-white hover:border-blue-700 transition-colors shadow-md">
+                    Acessar
+                </button>
             </div>
-            <button type="button" class="btn-continuar">
-                CONTINUAR
-                <i class="fa-solid fa-circle-arrow-right"></i>
-            </button>
-            <button type="button" class="btn-voltar" onclick="window.location.href='login.html'">
-                <i class="fa-solid fa-circle-arrow-left"></i>
-                VOLTAR
-            </button>
-        </section>
-    </div>
-</body>
-</html>
+        </div>
+    </section>
+</div>
+
+{% endblock %}
