@@ -12,33 +12,33 @@
     </head>
     <body>
         <div class="container">
-            <section id="carrosel">
-                <img src="img/Carrossel imagem 1.jpg" alt="Carrossel imagem 1" class="slide active">
-                <img src="img/Carrossel imagem 2.jpeg" alt="Carrossel imagem 2" class="slide">
-                <img src="img/Carrossel imagem 3.jpg" alt="Carrossel imagem 3" class="slide">
+            <section id="capa">
+                <img src="img/Tela inicial.jpeg" alt="Imagem inicial" class="img-inicial">
             </section>
-            <script src="Js/carrossel.js"></script>
             <section id="login">
                 <img src="img/Logo-Maria-preto.png" alt="Logo">
-                <div class="campo email">
-                    <p>Email</p>
-                    <div class="input-container">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="email" class="email-icon" placeholder="Insira seu email aqui..." required autofocus>
-                    </div>                    
-                </div>
-                <div class="campo senha">
-                    <p>Senha</p>
-                    <div class="input-container">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" class="senha-icon" placeholder="Insira sua senha aqui..." required>
-                    </div>                    
-                </div>
-                <button type="button" id="btnRecuperar" class="esq-btn">Esqueci minha senha</button>
-                <button type="button" class="btn" onclick="window.location.href='selecao.html'"> 
-                    ENTRAR
-                    <i class="fa-solid fa-right-to-bracket"></i>               
-                </button>           
+                <div class="cont-login">
+                    <h1>Login</h1>
+                    <div class="campo email">
+                        <p>Usuário</p>
+                        <div class="input-container">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="email" class="email-icon" placeholder="Insira seu email aqui..." required autofocus>
+                        </div>
+                    </div>
+                
+                    <div class="campo senha">
+                        <p>Senha</p>
+                        <div class="input-container">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" class="senha-icon" placeholder="Insira sua senha aqui..." required>
+                        </div>
+                    </div>
+                    <button type="button" id="btnRecuperar" class="esq-btn">Esqueci minha senha</button>
+                    <button type="button" class="btn" onclick="window.location.href='selecao.html'"> 
+                        Acessar           
+                    </button>
+                </div>                           
             </section>        
         </div>
         <dialog id="modalEsqueci">
