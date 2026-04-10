@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/selecao.css">
-</head>
-<body>
-    <div class="container">
-        <section id="carrosel">
-                <img src="img/Carrossel imagem 1.jpg" alt="Carrossel imagem 1" class="slide active">
-                <img src="img/Carrossel imagem 2.jpeg" alt="Carrossel imagem 2" class="slide">
-                <img src="img/Carrossel imagem 3.jpg" alt="Carrossel imagem 3" class="slide">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MarIA - Medicina Especializada</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="css/selecao.css">
+    </head>
+    <body>
+        <div class="container">
+            <section id="capa">
+                <img src="img/Tela selecao.jpeg" alt="seleção" class="img-seleção">
             </section>
-            <script src="Js/carrossel.js"></script>
         <section id="drops">
             <img src="img/Logo-Maria-preto.png" alt="Logo">
-            <div class="selecao">
+            <div class="cont-selecao">
+                <h1>Sede</h1>
                 <div class="campo">
-                    <label for="clinica">Selecione a clínica:</label><br>
+                    <label for="clinica">Unidade</label><br>
                     <select id="clinica" name="clinica" class="select-estilizado" required>
                         <option value="" disabled selected>Selecione a clínica</option>
                         <option value="centro">Clínica Centro</option>
@@ -33,7 +31,7 @@
                     </select>
                 </div>
                 <div class="campo">
-                    <label for="consultorio">Selecione o consultório:</label><br>
+                    <label for="consultorio">Consultório</label><br>
                     <select id="consultorio" name="consultorio" class="select-estilizado" required>
                         <option value="" disabled selected>Selecione o consultório</option>
                         <option value="consultorio1">Consultório 1</option>
@@ -43,15 +41,10 @@
                         <option value="consultorio5">Consultório 5</option>
                     </select>
                 </div>
-            </div>
-            <button type="button" class="btn-continuar">
-                CONTINUAR
-                <i class="fa-solid fa-circle-arrow-right"></i>
-            </button>
-            <button type="button" class="btn-voltar" onclick="window.location.href='login.html'">
-                <i class="fa-solid fa-circle-arrow-left"></i>
-                VOLTAR
-            </button>
+                <button type="button" class="btn-continuar">
+                    Acessar
+                </button>
+            </div>            
         </section>
     </div>
 </body>
