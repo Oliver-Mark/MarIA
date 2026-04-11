@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
         <div class="app-container">
             <aside classe="sidebar">
                 <div class="logo">
-                    <img src="img/Logo_clara.png" alt="Logo MarIA" class="logo-img">
+                    <img src="img/Logo_mini_plus.png" alt="Logo MarIA" class="logo-img">
                 </div>
                 <nav class="nav-menu">
                     <ul>
@@ -26,7 +26,47 @@
                         <li><a href="#"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
                     </ul>
                 </nav>
+                <nav class="nav-bottom">
+                    <ul>
+                        <li><a href="#"><i class="fa-solid fa-circle-info"></i> Sobre</a></li>
+                        <li><a href="#"><i class="fa-solid fa-gear"></i> Configurações  </a></li>
+                    </ul>
+                </nav>
             </aside>
+            <main class="main-content">
+                <header class="top-head">
+                    <div class="user-infor">
+                        <i class="fa-regular fa-circle-user"></i>
+                        <p>Olá, Dra. Sandra!</p>
+                    </div>
+                    <button class="btn-maria-ia">
+                        MarIA <i class="fa-solid fa-robot"></i>
+                    </button>
+                </header>
+                <section class="card">
+                    <div class="day-summary">
+                        <h3>07 de Abril de 2026</h3>
+                        <p>Hoje</p>
+                    </div>
+                    <div class="event-box">
+                        <h4>Início de atendimentos</h4>
+                        <div class="evento-detalhes">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <div class="evento-texto">
+                                <p class="tempo">Terça-feira, 07 de Abril <i class="fa-solid fa-circle"></i> 09:00</p>
+                                <p class="localização">Clínica Médica</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="frase">Não esqueça de <strong>beber água</strong> hoje!</p>
+                    <div class="container-calendario">
+                        <input type="text" id="calendario" placeholder="Selecione uma data">
+                    </div>
+                    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                    <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
+                    <script src="Js/calendario.js"></script>
+                </section>
+            </main>
         </div>
     </body>
 </html>
