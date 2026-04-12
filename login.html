@@ -22,18 +22,18 @@
                     <div class="campo email">
                         <p>Usuário</p>
                         <div class="input-container">
-                            <input type="email" class="email-icon" placeholder="Insira seu email aqui..." required autofocus>
+                            <input id="email" type="email" class="email-icon" placeholder="Insira seu email aqui..." required autofocus>
                         </div>
                     </div>
                 
                     <div class="campo senha">
                         <p>Senha</p>
                         <div class="input-container">
-                            <input type="password" class="senha-icon" placeholder="Insira sua senha aqui..." required>
+                            <input id="senha" type="password" class="senha-icon" placeholder="Insira sua senha aqui..." required>
                         </div>
                     </div>
                     <button type="button" id="btnRecuperar" class="esq-btn">Esqueci minha senha</button>
-                    <button type="button" class="btn" onclick="window.location.href='selecao.html'"> 
+                    <button id="btnAcessar" type="button" class="btn"> 
                         Acessar           
                     </button>
                 </div>                           
@@ -49,5 +49,6 @@
             </div>
         </dialog>
         <script src="Js/esqueci.js"></script>
+        <script src="Js/login.js"></script>
     </body>
 </html>
