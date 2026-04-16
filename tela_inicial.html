@@ -7,37 +7,37 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <link rel="stylesheet" href="css/tela_inicial.css">
     </head>
     <body>
         <div class="app-container">
-            <aside classe="sidebar">
+            <aside class="sidebar">
                 <div class="logo">
                     <img src="img/Logo_mini_plus.png" alt="Logo MarIA" class="logo-img">
                 </div>
                 <nav class="nav-menu">
                     <ul>
-                        <li><a href="#" class="active"><i class="fa-regular fa-calendar-days"></i> Agenda</a></li>
-                        <li><a href="#"><i class="fa-solid fa-couch"></i> Sala de Espera</a></li>
-                        <li><a href="#"><i class="fa-solid fa-users"></i> Pacientes</a></li>
-                        <li><a href="#"><i class="fa-solid fa-file-signature"></i> Assinatura Eletrônica</a></li>
-                        <li><a href="#"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                        <li><a href="#" class="active"><i class="ph-light ph-calendar-dots"></i> Agenda</a></li>
+                        <li><a href="#"><i class="ph-light ph-clock-user"></i> Sala de Espera</a></li>
+                        <li><a href="#"><i class="ph-light ph-users"></i> Pacientes</a></li>
+                        <li><a href="#"><i class="ph-light ph-pen-nib"></i> Assinatura Eletrônica</a></li>
+                        <li><a href="#"><i class="ph-light ph-chart-pie-slice"></i> Dashboard</a></li>
                     </ul>
                 </nav>
                 <nav class="nav-bottom">
                     <ul>
-                        <li><a href="#"><i class="fa-solid fa-circle-info"></i> Sobre</a></li>
-                        <li><a href="#"><i class="fa-solid fa-gear"></i> Configurações  </a></li>
+                        <li><a href="#"><i class="ph-light ph-info"></i> Sobre</a></li>
+                        <li><a href="#"><i class="ph-light ph-gear"></i> Configurações  </a></li>
                     </ul>
                 </nav>
             </aside>
             <main class="main-content">
                 <header class="top-head">
                     <div class="user-infor">
-                        <i class="fa-regular fa-circle-user"></i>
-                        <p>Olá, Dra. Sandra!</p>
+                        <i class="ph-fill ph-user-circle"></i>
+                        <h2>Olá, Dra. Sandra!</h2>
                     </div>
                     <button class="btn-maria-ia">
                         MarIA <i class="fa-solid fa-robot"></i>
@@ -45,28 +45,30 @@
                 </header>
                 <section class="card">
                     <div class="day-summary">
-                        <h3>07 de Abril de 2026</h3>
-                        <p>Hoje</p>
-                    </div>
-                    <div class="event-box">
-                        <h4>Início de atendimentos</h4>
-                        <div class="evento-detalhes">
-                            <i class="fa-solid fa-calendar-days"></i>
-                            <div class="evento-texto">
-                                <p class="tempo">Terça-feira, 07 de Abril <i class="fa-solid fa-circle"></i> 09:00</p>
-                                <p class="localização">Clínica Médica</p>
+                        <div class="date-titles">
+                            <h3>07 de Abril de 2026</h3>
+                            <p>Hoje</p>
+                        </div>                        
+                        <div class="event-box">
+                            <h4>Início de atendimentos</h4>
+                            <div class="evento-detalhes">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <div class="evento-texto">
+                                    <p class="tempo">Terça-feira, 07 de Abril <i class="fa-solid fa-circle"></i> 09:00</p>
+                                    <p class="localização">Clínica Médica</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <p class="frase">Não esqueça de <strong>beber água</strong> hoje!</p>
+                        <p class="frase">Não esqueça de <strong>beber água</strong> hoje!</p>
+                    </div>                    
                     <div class="container-calendario">
                         <input type="text" id="calendario" placeholder="Selecione uma data">
-                    </div>
-                    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-                    <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
-                    <script src="Js/calendario.js"></script>
+                    </div>                    
                 </section>
             </main>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
+        <script src="Js/calendario.js"></script>
     </body>
 </html>
