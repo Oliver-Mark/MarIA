@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>MarIA - Medicina Especializada</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+            <script src="https://unpkg.com/@phosphor-icons/web"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+            <link rel="stylesheet" href="css/agenda.css">
+    </head>
+    <body>
+        <div class="app-container">
+            <aside class="sidebar">
+                <div class="logo">
+                    <a href="tela_inicial.html" class="logo-link">
+                        <img src="img/Logo_mini_plus.png" alt="Logo MarIA" class="logo-img">
+                    </a>                    
+                </div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#" class="active"><i class="ph-light ph-calendar-dots"></i> Agenda</a></li>
+                        <li><a href="#"><i class="ph-light ph-clock-user"></i> Sala de Espera</a></li>
+                        <li><a href="#"><i class="ph-light ph-users"></i> Pacientes</a></li>
+                        <li><a href="#"><i class="ph-light ph-pen-nib"></i> Assinatura Eletrônica</a></li>
+                        <li><a href="#"><i class="ph-light ph-chart-pie-slice"></i> Dashboard</a></li>
+                    </ul>
+                </nav>
+                <nav class="nav-bottom">
+                    <ul>
+                        <li><a href="#"><i class="ph-light ph-info"></i> Sobre</a></li>
+                        <li><a href="#"><i class="ph-light ph-gear"></i> Configurações  </a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <main class="main-content">
+                <div class="agenda-layout">
+                    <div class="agenda-list-box">
+                        <div class="filter-header">
+                            <i class="ph ph-funnel"></i> Filtrar <i class="ph ph-caret-down"></i>
+                        </div>
+                        <div class="lista-agenda">
+                            <div class="lista-card">
+                                <span class="time">09:30</span>
+                                <span class="paciente">João Pedro Santos</span>
+                                <span class="tipo">Consulta</span>
+                            </div>
+                            <div class="lista-card">
+                                <span class="time">10:00</span>
+                                <span class="paciente">Maria Eduarda</span>
+                                <span class="tipo">Retorno</span>
+                            </div>
+                            <div class="lista-card">
+                                <span class="time">10:30</span>
+                                <span class="paciente">Carlos Augusto</span>
+                                <span class="tipo">Exame</span>
+                            </div>
+                            <div class="lista-card">
+                                <span class="time">11:00</span>
+                                <span class="paciente">Ana Beatriz Oliveira</span>
+                                <span class="tipo">Consulta</span>
+                            </div>
+                            <div class="lista-card">
+                                <span class="time">12:00</span>
+                                <span class="paciente">Almoço</span>
+                            </div>
+                            <div class="lista-card">
+                                <span class="time">13:00</span>
+                                <span class="paciente">Almoço</span>
+                            </div>
+                            <div class="lista-card">
+                                <span class="time">14:00</span>
+                                <span class="paciente">Almoço</span>
+                            </div>
+                            <div class="lista-card">
+                                <span class="time">14:30</span>
+                                <span class="paciente">Ricardo Alves</span>
+                                <span class="tipo">Exame</span>
+                            </div>
+                            <div class="lista-card">
+                                <span class="time">15:00</span>
+                                <span class="paciente">Helena Vasconcelos</span>
+                                <span class="tipo">Consulta</span>
+                            </div>
+                            <div class="lista-card">
+                                <span class="time">16:00</span>
+                                <span class="paciente">Encerramento dos atendimentos</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agenda-side-container">
+                        <div class="ações">
+                            <button class="btn-maria-ia">
+                                MarIA <i class="ph-fill ph-robot"></i>
+                            </button>
+                        </div>
+                        <div class="container-calendario">
+                            <input type="text" id="calendario" placeholder="Selecione uma data">
+                        </div>
+                        <button class="btn-mais">
+                            <i class="ph ph-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
+        <script src="Js/calendario.js"></script>
+    </body>
+</html>
