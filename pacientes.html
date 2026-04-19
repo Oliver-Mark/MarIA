@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>MarIA - Medicina Especializada</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+            <script src="https://unpkg.com/@phosphor-icons/web"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+            <link rel="stylesheet" href="css/pacientes.css">
+    </head>
+    <body>
+        <div class="app-container">
+            <aside class="sidebar">
+                <div class="logo">
+                    <a href="tela_inicial.html" class="logo-link">
+                        <img src="img/Logo_mini_plus.png" alt="Logo MarIA" class="logo-img">
+                    </a>                    
+                </div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="agenda.html"><i class="ph-light ph-calendar-dots"></i> Agenda</a></li>
+                        <li><a href="sala_de_espera.html"><i class="ph-light ph-clock-user"></i> Sala de Espera</a></li>
+                        <li><a href="#" class="active"><i class="ph-light ph-users"></i> Pacientes</a></li>
+                        <li><a href="#"><i class="ph-light ph-pen-nib"></i> Assinatura Eletrônica</a></li>
+                        <li><a href="#"><i class="ph-light ph-chart-pie-slice"></i> Dashboard</a></li>
+                    </ul>
+                </nav>
+                <nav class="nav-bottom">
+                    <ul>
+                        <li><a href="#"><i class="ph-light ph-info"></i> Sobre</a></li>
+                        <li><a href="#"><i class="ph-light ph-gear"></i> Configurações  </a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <main class="main-content">
+                <div class="ações">
+                    <button class="btn-maria-ia">
+                        MarIA <i class="ph-fill ph-robot"></i>
+                    </button>
+                </div>
+                <div class="card-paciente">
+                    <div class="secao-cadastro">
+                        <div class="foto-paciente">
+                            <img src="https://i.pravatar.cc/300?img=11" alt="Foto do paciente">
+                        </div>
+                        <div class="grade-cadastro">
+                            <div class="input-group">
+                                <label>Nome do Paciente</label>
+                                <input type="text" value="João Pedro Santos" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>Data de nascimento</label>
+                                <input type="text" value="16/04/1956" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>Sexo</label>
+                                <input type="text" value="Masculino" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>Idade</label>
+                                <input type="text" value="70 anos (incompletos)" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>CPF</label>
+                                <input type="text" value="000.000.000-00" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>Convênio</label>
+                                <input type="text" value="Particular" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="secao-triagem">
+                        <h3>Triagem</h3>
+                        <div class="grade-triagem">
+                            <div class="input-group">
+                                <label>Altura</label>
+                                <input type="text" value="1,63m" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>PA</label>
+                                <input type="text" value="120/80 mmHg" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>Prioridade</label>
+                                <input type="text" value="Baixíssimo" readonly>
+                            </div>                            
+                            <div class="input-group group-textarea">
+                                <label>HPP e Observações</label>
+                                <textarea readonly>Cliente relatou dor no pulso.</textarea>
+                            </div>
+                            <div class="input-group">
+                                <label>Peso</label>
+                                <input type="text" value="80Kg" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>Temperatura</label>
+                                <input type="text" value="36,7°C" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="secao-historico">
+                        <div class="header-historico">
+                            <h3>Histórico</h3>
+                            <button class="btn-nova">Nova Anamnese</button>
+                        </div>
+                        <div class="lista-historico">
+                            <div class="item-historico">
+                                <span class="medico">Dr. Pedro Guimarães</span>
+                                <span class="especialidade"> Oftalmologista</span>
+                                <button class="btn-ver"><i class="ph-bold ph-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>        
+    </body>
+</html>

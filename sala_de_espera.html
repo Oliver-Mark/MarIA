@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>MarIA - Medicina Especializada</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+            <script src="https://unpkg.com/@phosphor-icons/web"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+            <link rel="stylesheet" href="css/sala_de_espera.css">
+    </head>
+    <body>
+        <div class="app-container">
+            <aside class="sidebar">
+                <div class="logo">
+                    <a href="tela_inicial.html" class="logo-link">
+                        <img src="img/Logo_mini_plus.png" alt="Logo MarIA" class="logo-img">
+                    </a>                    
+                </div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="agenda.html"><i class="ph-light ph-calendar-dots"></i> Agenda</a></li>
+                        <li><a href="#" class="active"><i class="ph-light ph-clock-user"></i> Sala de Espera</a></li>
+                        <li><a href="pacientes.html"><i class="ph-light ph-users"></i> Pacientes</a></li>
+                        <li><a href="#"><i class="ph-light ph-pen-nib"></i> Assinatura Eletrônica</a></li>
+                        <li><a href="#"><i class="ph-light ph-chart-pie-slice"></i> Dashboard</a></li>
+                    </ul>
+                </nav>
+                <nav class="nav-bottom">
+                    <ul>
+                        <li><a href="#"><i class="ph-light ph-info"></i> Sobre</a></li>
+                        <li><a href="#"><i class="ph-light ph-gear"></i> Configurações  </a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <main class="main-content">
+                <div class="ações">
+                    <button class="btn-maria-ia">
+                        MarIA <i class="ph-fill ph-robot"></i>
+                    </button>
+                </div>
+                <div class="filtro-selecao">
+                    <label>Situação:</label>
+                    <div class="container-selecao">
+                        <select>
+                            <option value="aguardando">Aguardando</option>
+                            <option value="em_atendimento">Em Atendimento</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                        <i class="ph-bold ph-caret-down"></i>
+                    </div>
+                </div>
+                <div class="container-tabela">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Hora de<br>chegada</th>
+                                <th style="width: 15%;">Hora<br>marcada</th>
+                                <th style="width: 30%;">Nome do paciente</th>
+                                <th style="width: 15%;">Motivo</th>
+                                <th style="width: 25%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>08:30</td>
+                                <td>09:30</td>
+                                <td>João Pedro Santos</td>
+                                <td>Consulta</td>
+                                <td class="celula-acao">
+                                    <button class="btn-chamar">Chamar</button>
+                                    <button class="btn-atender">Atender</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>09:53</td>
+                                <td>10:00</td>
+                                <td>Maria Eduarda</td>
+                                <td>Retorno</td>
+                                <td class="celula-acao">
+                                    <button class="btn-chamar">Chamar</button>
+                                    <button class="btn-atender">Atender</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10:15</td>
+                                <td>11:00</td>
+                                <td>Ana Beatriz Oliveira</td>
+                                <td>Consulta</td>
+                                <td class="celula-acao">
+                                    <button class="btn-chamar">Chamar</button>
+                                    <button class="btn-atender">Atender</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10:21</td>
+                                <td>10:30</td>
+                                <td>Carlos Augusto</td>
+                                <td>Exame</td>
+                                <td class="celula-acao">
+                                    <button class="btn-chamar">Chamar</button>
+                                    <button class="btn-atender">Atender</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10:30</td>
+                                <td>XXX</td>
+                                <td>Marcos Rocha</td>
+                                <td>Consulta</td>
+                                <td class="celula-acao">
+                                    <button class="btn-chamar">Chamar</button>
+                                    <button class="btn-atender">Atender</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10:47</td>
+                                <td>XXX</td>
+                                <td>José Mendes</td>
+                                <td>Exame</td>
+                                <td class="celula-acao">
+                                    <button class="btn-chamar">Chamar</button>
+                                    <button class="btn-atender">Atender</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>        
+    </body>
+</html>
