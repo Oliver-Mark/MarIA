@@ -1,0 +1,80 @@
+<div id="ficha-paciente-view" style="display: none;">
+                    
+                    <button class="btn-voltar" onclick="voltarParaLista()"><i class="ph-bold ph-arrow-left"></i> Voltar para a pesquisa</button>
+
+                    <div class="card-paciente">
+                        <div class="secao-cadastro">
+                            <div class="foto-paciente">
+                                <img src="https://i.pravatar.cc/300?img=11" alt="Foto do paciente">
+                            </div>
+                            <div class="grade-cadastro">
+                                <div class="input-group">
+                                    <label for="nome">Nome do Paciente</label>
+                                    <input id="nome" type="text" value="João Pedro Santos" readonly>
+                                </div>
+                                <div class="input-group">
+                                    <label for="data_nasc">Data de nascimento</label>
+                                    <input id="data_nasc" type="text" value="16/04/1956" readonly>
+                                </div>
+                                <div class="input-group">
+                                    <label for="sexo">Sexo</label>
+                                    <input id="sexo" type="text" value="Masculino" readonly>
+                                </div>
+                                <div class="input-group">
+                                    <label for="idade">Idade</label>
+                                    <input id="idade" type="text" value="70 anos (incompletos)" readonly>
+                                </div>
+                                <div class="input-group">
+                                    <label for="cpf">CPF</label>
+                                    <input id="cpf" type="text" value="000.000.000-00" readonly>
+                                </div>
+                                <div class="input-group">
+                                    <label for="convenio">Convênio</label>
+                                    <input id="convenio" type="text" value="Particular" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="secao-triagem">
+                            <h3>Triagem</h3>
+                            <div class="grade-triagem">
+                                <div class="input-group">
+                                    <label for="altura">Altura</label>
+                                    <input id="altura" type="text" value="1,63m" readonly>
+                                </div>
+                                <div class="input-group">
+                                    <label for="pa">PA</label>
+                                    <input id="pa" type="text" value="120/80 mmHg" readonly>
+                                </div>
+                                <div class="input-group">
+                                    <label for="prioridade">Prioridade</label>
+                                    <input id="prioridade" type="text" value="Baixíssimo" readonly>
+                                </div>                            
+                                <div class="input-group group-textarea">
+                                    <label for="hpp">HPP e Observações</label>
+                                    <textarea id="hpp" readonly>Cliente relatou dor no pulso.</textarea>
+                                </div>
+                                <div class="input-group">
+                                    <label for="peso">Peso</label>
+                                    <input id="peso" type="text" value="80Kg" readonly>
+                                </div>
+                                <div class="input-group">
+                                    <label for="temperatura">Temperatura</label>
+                                    <input id="temperatura" type="text" value="36,7°C" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="secao-historico">
+                            <div class="header-historico">
+                                <h3>Histórico</h3>
+                                <button class="btn-nova">Nova Anamnese</button>
+                            </div>
+                            <div class="lista-historico">
+                                <div class="item-historico">
+                                    <span class="medico">Dr. Pedro Guimarães</span>
+                                    <span class="especialidade"> Oftalmologista</span>
+                                    <button class="btn-ver"><i class="ph-bold ph-eye"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
