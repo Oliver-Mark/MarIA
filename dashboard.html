@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarIA - Dashboard</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+ 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <aside class="sidebar">
+            <div class="logo">
+                <a href="tela_inicial.html" class="logo-link">
+                    <img src="img/Logo_mini_plus.png" alt="Logo MarIA" class="logo-img">
+                </a>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="agenda.html"><i class="ph-light ph-calendar-dots"></i> <span class="menu-text">Agenda</span></a></li>
+                    <li><a href="sala_de_espera.html"><i class="ph-light ph-clock-user"></i> <span class="menu-text">Sala de Espera</span></a></li>
+                    <li><a href="pacientes.html"><i class="ph-light ph-users"></i> <span class="menu-text">Pacientes</span></a></li>
+                    <li><a href="assinatura_eletronica.html"><i class="ph-light ph-pen-nib"></i> <span class="menu-text">Assinatura Eletrônica</span></a></li>
+                    <li><a href="dashboard.html" class="active"><i class="ph-light ph-chart-pie-slice"></i> <span class="menu-text">Dashboard</span></a></li>
+                </ul>
+            </nav>
+            
+            <nav class="nav-bottom">
+                <ul>
+                    <li><a href="#"><i class="ph-light ph-info"></i> <span class="menu-text">Sobre</span></a></li>
+                    <li><a href="#"><i class="ph-light ph-gear"></i> <span class="menu-text">Configurações</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            
+            <div class="ações">
+                <button class="btn-maria-ia">
+                    MarIA <i class="ph-fill ph-robot"></i>
+                </button>
+            </div>
+
+            <div class="filtros-container">
+                <div class="grupo-filtro">
+                    <label>Data Inicial:</label>
+                    <div class="input-data">
+                        <input type="text" id="data-inicial" class="datepicker" value="01/01/2026">
+                        <i class="ph-bold ph-caret-down"></i>
+                    </div>
+                </div>
+
+                <div class="grupo-filtro">
+                    <label>Data Final:</label>
+                    <div class="input-data">
+                        <input type="text" id="data-final" class="datepicker" value="31/01/2026">
+                        <i class="ph-bold ph-caret-down"></i>
+                    </div>
+                </div>
+
+                <div class="grupo-filtro filtro-tipo">
+                    <label>Tipo:</label>
+                    <div class="input-data">
+                        <select id="filtro-tipo" onchange="atualizarGrafico()">
+                            <option value="atendimentos">Atendimentos</option>
+                            <option value="valores">Valores</option>
+                        </select>
+                        <i class="ph-bold ph-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grafico-header">
+                <h3 id="titulo-data-grafico">01 Jan - 31 Jan</h3>
+            </div>
+
+            <div class="container-grafico" id="area-exportacao">
+                <canvas id="meuGrafico"></canvas>
+            </div>
+
+            <div class="container-btn-exportar">
+                <button class="btn-exportar" onclick="exportarPDF()">Exportar gráfico</button>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
+
+    <script src="Js/app.js">
+        
+    </script>
+    <script src="Js/sidebar.js"></script>
+</body>
+</html>

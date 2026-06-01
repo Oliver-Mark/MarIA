@@ -20,18 +20,34 @@ body {
 }
 
 .sidebar {
-    min-width: 250px;
+    width: 90px;
     background-color: #5DAEE0;
     color: #F7FAFC;
     display: flex;
     flex-direction: column;
     padding: 30px 0 30px 10px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar:hover {
+    width: 250px;
 }
 
 .logo {
     margin-bottom: 40px;
     display: flex;
-    align-self: center;
+    align-self: flex-start;
+    padding-left: 5px;
+    min-width: 180px;
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0s 0.15s;
+}
+
+.sidebar:hover .logo {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease 0.2s, visibility 0s 0s;
 }
 
 .logo img {
@@ -75,11 +91,25 @@ body {
     border-radius: 8px;
     position: relative;
     transition: 0.2s;
+    white-space: nowrap;
 }
 
 .sidebar i {
     text-align: center;
     font-size: 34px;
+    min-width: 34px;
+}
+
+.menu-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0s 0.15s;
+}
+
+.sidebar:hover .menu-text {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease 0.2s, visibility 0s 0s;
 }
 
 .nav-menu a:hover:not(.active) {
@@ -124,6 +154,19 @@ body {
     border-top-right-radius: 50%;
     box-shadow: 10px -10px 0 0 #F7FAFC;
     pointer-events: none;
+}
+
+/* Classe injetada via JS para manter o menu aberto no recarregamento */
+.sidebar.mantem-aberto {
+    width: 250px !important;
+    transition: none !important;
+}
+
+.sidebar.mantem-aberto .logo,
+.sidebar.mantem-aberto .menu-text {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
 }
 
 .main-content {

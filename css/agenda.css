@@ -19,19 +19,41 @@ body {
     height: 100%;
 }
 
+/* =========================================
+   SIDEBAR EXPANSÍVEL (Alterado)
+   ========================================= */
 .sidebar {
-    min-width: 250px;
+    width: 90px; /* Começa fininha */
     background-color: #5DAEE0;
     color: #F7FAFC;
     display: flex;
     flex-direction: column;
     padding: 30px 0 30px 10px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Animação de abrir e fechar */
+}
+
+/* Expande a barra ao passar o mouse */
+.sidebar:hover {
+    width: 250px;
 }
 
 .logo {
     margin-bottom: 40px;
     display: flex;
-    align-self: center;
+    align-self: flex-start; /* Alinha à esquerda na barra recolhida */
+    padding-left: 5px;
+    min-width: 180px; /* Impede a imagem de amassar */
+    
+    /* Esconde a logo quando a barra está pequena */
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0s 0.15s;
+}
+
+.sidebar:hover .logo {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease 0.2s, visibility 0s 0s;
 }
 
 .logo img {
@@ -75,11 +97,27 @@ body {
     border-radius: 8px;
     position: relative;
     transition: 0.2s;
+    white-space: nowrap; /* Impede o texto de quebrar de linha */
 }
 
 .sidebar i {
     text-align: center;
     font-size: 34px;
+    min-width: 34px; /* Garante que o ícone nunca diminua de tamanho */
+}
+
+/* Nova classe para esconder o texto do menu */
+.menu-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0s 0.15s;
+}
+
+/* Revela o texto quando a barra expande */
+.sidebar:hover .menu-text {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease 0.2s, visibility 0s 0s;
 }
 
 .nav-menu a:hover:not(.active) {
@@ -126,6 +164,22 @@ body {
     pointer-events: none;
 }
 
+/* Classe injetada via JS para manter o menu aberto no recarregamento */
+.sidebar.mantem-aberto {
+    width: 250px !important;
+    transition: none !important;
+}
+
+.sidebar.mantem-aberto .logo,
+.sidebar.mantem-aberto .menu-text {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
+}
+
+/* =========================================
+   RESTANTE DO SEU CÓDIGO (Intacto)
+   ========================================= */
 .main-content {
     flex-grow: 1;
     background-color: #F7FAFC;

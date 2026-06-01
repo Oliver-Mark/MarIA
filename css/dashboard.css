@@ -20,7 +20,7 @@ body {
 }
 
 /* =========================================
-   SIDEBAR EXPANSÍVEL (Igual da Agenda)
+   SIDEBAR EXPANSÍVEL (Padrão)
    ========================================= */
 .sidebar {
     width: 90px;
@@ -41,7 +41,7 @@ body {
     display: flex;
     align-self: flex-start;
     padding-left: 5px;
-    min-width: 180px;
+    min-width: 180px; 
     opacity: 0; 
     visibility: hidden;
     transition: opacity 0.15s ease, visibility 0s 0.15s;
@@ -82,6 +82,10 @@ body {
     width: 100%;
 }
 
+.sidebar li {
+    width: 100%;
+}
+
 .sidebar a {
     color: #F7FAFC;
     text-decoration: none;
@@ -94,6 +98,7 @@ body {
     border-radius: 8px;
     position: relative;
     transition: 0.2s;
+    width: 100%;
     white-space: nowrap;
 }
 
@@ -173,7 +178,7 @@ body {
 }
 
 /* =========================================
-   ÁREA PRINCIPAL DA SALA DE ESPERA
+   ÁREA PRINCIPAL DO DASHBOARD
    ========================================= */
 .main-content {
     flex-grow: 1;
@@ -182,12 +187,14 @@ body {
     padding: 40px 60px;
     display: flex;
     flex-direction: column;
+    /* Permite que o contêiner encolha sem empurrar os elementos para fora da tela */
+    min-width: 0; 
 }
 
 .ações {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .btn-maria-ia {
@@ -195,7 +202,6 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    top: 35px;
     background-color: transparent;
     color: #3B82F6;
     border: 2px solid #3B82F6;
@@ -216,160 +222,110 @@ body {
     color: #F7FAFC;
 }
 
-.filtro-selecao{
-    margin-bottom: 25px;
+/* =========================================
+   FILTROS SUPERIORES
+   ========================================= */
+.filtros-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 30px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #5DAEE0;
+    flex-wrap: wrap; /* Permite que os filtros quebrem de linha se o espaço ficar apertado */
 }
 
-.filtro-selecao label {
-    display: block;
-    font-size: 18px;
+.grupo-filtro {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Empurra o filtro de TIPO para o lado direito */
+.filtro-tipo {
+    margin-left: auto; 
+}
+
+.grupo-filtro label {
+    font-size: 16px;
     font-weight: bold;
     color: #2D3748;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
-.container-selecao {
+.input-data {
     position: relative;
-    width: 200px;
+    width: 180px;
 }
 
-.container-selecao select {
-    width: 85%;
-    padding: 2px 15px;
+.input-data input,
+.input-data select {
+    width: 100%;
+    padding: 8px 15px;
     border: 2px solid #5DAEE0;
     border-radius: 50px;
     background-color: transparent;
     color: #5DAEE0;
-    font-size: 15px;
-    font-weight: 600;   
+    font-size: 14px;
+    font-weight: bold;   
+    outline: none;
     appearance: none;
     cursor: pointer;
-    outline: none;
+    font-family: 'Inter', sans-serif;
 }
 
-.container-selecao i {
+.input-data i {
     position: absolute;
-    right: 40px;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
     color: #5DAEE0;
-    font-weight: 400;
+    font-weight: bold;
     pointer-events: none;
 }
 
-.container-tabela {
-    border: 2px solid #5DAEE0;
-    border-radius: 40px;
-    max-height: 65vh;
-    overflow-y: auto;
-    background-color: #F7FAFC;
+/* =========================================
+   ÁREA DO GRÁFICO
+   ========================================= */
+.grafico-header {
+    margin-bottom: 10px;
 }
 
-.container-tabela::-webkit-scrollbar {
-    width: 0.1px;
-}
-
-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    text-align: center;
-}
-
-thead {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-th {
-    background-color: #5DAEE0;
-    color: #F7FAFC;
-    padding: 15px 10px;
-    font-weight: 600;
-    border-right: 2px solid #F7FAFC;
-}
-
-/* Bordas internas superiores para não vazar a cor no cabeçalho */
-th:first-child {
-    border-top-left-radius: 38px;
-}
-
-th:nth-child(1),
-th:nth-child(2),
-th:nth-child(4) {
-    width: 15%;
-}
-
-th:nth-child(3) {
-    width: 30%;
-}
-
-th:nth-child(5) {
-    width: 25%;
-}
-
-th:last-child {
-    border-top-right-radius: 38px;
-    border-right: none;
-}
-
-td {
-    padding: 15px 10px;
-    font-weight: 600;
+.grafico-header h3 {
+    font-size: 20px;
+    font-weight: bold;
     color: #2D3748;
-    border-right: 2px solid #5DAEE0;
-    border-bottom: 2px solid #5DAEE0;
-    background-color: #F7FAFC;
 }
 
-td:last-child {
-    border-right: none;
+.container-grafico {
+    flex-grow: 1;
+    width: 100%;
+    max-height: 400px; 
+    margin-bottom: 20px;
+    position: relative; /* Exigência do Chart.js para se adaptar responsivamente */
 }
 
-tr:last-child td {
-    border-bottom: none;
-}
-
-tr:hover td {
-    background-color: rgba(93, 174, 224, 0.05);
-}
-
-.celula-acao {
+/* =========================================
+   BOTÃO DE EXPORTAR
+   ========================================= */
+.container-btn-exportar {
     display: flex;
-    justify-content: center;
-    gap: 12px;
-    align-items: center;
-    height: 100%;
+    justify-content: flex-end;
+    margin-top: 20px;
 }
 
-.btn-chamar, .btn-atender {
-    padding: 6px 18px;
+.btn-exportar {
+    background-color: transparent;
+    color: #5DAEE0;
+    border: 2px solid #5DAEE0;
+    padding: 10px 25px;
     border-radius: 50px;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
     cursor: pointer;
     transition: 0.2s;
 }
 
-.btn-chamar {
-    background-color: #5DAEE0;
-    color: #F7FAFC;
-    border: 2px solid #5DAEE0;
-}
-
-.btn-chamar:hover {
-    background-color: transparent;
-    color: #5DAEE0;
-}
-
-.btn-atender {
-    background-color: transparent;
-    color: #5DAEE0;
-    border: 2px solid #5DAEE0;
-}
-
-.btn-atender:hover {
+.btn-exportar:hover {
     background-color: #5DAEE0;
     color: #F7FAFC;
 }

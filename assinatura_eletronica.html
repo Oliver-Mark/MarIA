@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarIA - Assinatura Eletrônica</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+    <link rel="stylesheet" href="css/assinatura_eletronica.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <aside class="sidebar">
+            <div class="logo">
+                <a href="tela_inicial.html" class="logo-link">
+                    <img src="img/Logo_mini_plus.png" alt="Logo MarIA" class="logo-img">
+                </a>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="agenda.html"><i class="ph-light ph-calendar-dots"></i> <span class="menu-text">Agenda</span></a></li>
+                    <li><a href="sala_de_espera.html"><i class="ph-light ph-clock-user"></i> <span class="menu-text">Sala de Espera</span></a></li>
+                    <li><a href="pacientes.html"><i class="ph-light ph-users"></i> <span class="menu-text">Pacientes</span></a></li>
+                    <li><a href="assinatura_eletronica.html" class="active"><i class="ph-light ph-pen-nib"></i> <span class="menu-text">Assinatura Eletrônica</span></a></li>
+                    <li><a href="dashboard.html"><i class="ph-light ph-chart-pie-slice"></i> <span class="menu-text">Dashboard</span></a></li>
+                </ul>
+            </nav>
+            
+            <nav class="nav-bottom">
+                <ul>
+                    <li><a href="#"><i class="ph-light ph-info"></i> <span class="menu-text">Sobre</span></a></li>
+                    <li><a href="#"><i class="ph-light ph-gear"></i> <span class="menu-text">Configurações</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            
+            <div class="ações">
+                <button class="btn-maria-ia">
+                    MarIA <i class="ph-fill ph-robot"></i>
+                </button>
+            </div>
+
+            <div class="filtros-container">
+                <div class="grupo-filtro">
+                    <label>Data Inicial:</label>
+                    <div class="input-data">
+                        <input type="text" class="datepicker" value="01/04/2026">
+                        <i class="ph-bold ph-calendar-blank"></i>
+                    </div>
+                </div>
+
+                <div class="grupo-filtro">
+                    <label>Data Final:</label>
+                    <div class="input-data">
+                        <input type="text" class="datepicker" value="30/04/2026">
+                        <i class="ph-bold ph-calendar-blank"></i>
+                    </div>
+                </div>
+
+                <div class="grupo-filtro">
+                    <label>Situação:</label>
+                    <div class="input-data">
+                        <select id="filtro-status" onchange="filtrarDocumentos()">
+                            <option value="pendente">Para Assinar</option>
+                            <option value="assinado">Já Assinados</option>
+                        </select>
+                        <i class="ph-bold ph-caret-down"></i>
+                    </div>
+                </div>
+
+                <div class="container-btn-assinar-todos">
+                    <button class="btn-assinar-todos">Assinar todos os documentos</button>
+                </div>
+            </div>
+
+            <div class="container-tabela">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prontuário</th>
+                            <th>Nome do Paciente</th>
+                            <th>Data da Consulta</th>
+                            <th>Assinatura Eletrônica</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-documentos">
+                        <tr data-status="pendente">
+                            <td>158492</td>
+                            <td>João Pedro Santos</td>
+                            <td>07/04/2026</td>
+                            <td class="celula-acao">
+                                <span class="status-pendente">Precisa Assinar</span>
+                            </td>
+                        </tr>
+                        <tr data-status="assinado">
+                            <td>302918</td>
+                            <td>Maria Eduarda</td>
+                            <td>07/04/2026</td>
+                            <td class="celula-acao">
+                                <span class="status-assinado">Assinado</span>
+                            </td>
+                        </tr>
+                        <tr data-status="pendente">
+                            <td>557403</td>
+                            <td>Ana Beatriz Oliveira</td>
+                            <td>07/04/2026</td>
+                            <td class="celula-acao">
+                                <span class="status-pendente">Precisa Assinar</span>
+                            </td>
+                        </tr>
+                        <tr data-status="pendente">
+                            <td>821066</td>
+                            <td>Carlos Augusto</td>
+                            <td>07/04/2026</td>
+                            <td class="celula-acao">
+                                <span class="status-pendente">Precisa Assinar</span>
+                            </td>
+                        </tr>
+                        <tr data-status="assinado">
+                            <td>493271</td>
+                            <td>Marcos Rocha</td>
+                            <td>07/04/2026</td>
+                            <td class="celula-acao">
+                                <span class="status-assinado">Assinado</span>
+                            </td>
+                        </tr>
+                        <tr data-status="assinado">
+                            <td>926154</td>
+                            <td>José Mendes</td>
+                            <td>07/04/2026</td>
+                            <td class="celula-acao">
+                                <span class="status-assinado">Assinado</span>
+                            </td>
+                        </tr>
+                        <tr data-status="pendente">
+                            <td>721458</td>
+                            <td>Ricardo Alves</td>
+                            <td>07/04/2026</td>
+                            <td class="celula-acao">
+                                <span class="status-pendente">Precisa Assinar</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
+    
+    <script src="Js/app.js"></script>
+    <script src="Js/sidebar.js"></script>
+</body>
+</html>
