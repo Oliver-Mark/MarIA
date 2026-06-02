@@ -113,7 +113,8 @@ body {
     font-size: 34px;
 }
 
-.sidebar a:hover:not(.active) {
+.nav-menu a:hover:not(.active),
+.nav-bottom a:hover:not(.active) {
     background-color: var(--bg-fundo-tela);
     color: var(--bg-azul-principal);
     border-radius: 50px;
@@ -227,6 +228,10 @@ body {
 .config-panels {
     padding: 60px 80px;
     overflow-y: auto;
+}
+
+.config-panels::-webkit-scrollbar {
+    width: 0.1px;
 }
 
 .panel {

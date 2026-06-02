@@ -184,6 +184,7 @@ body {
     flex-grow: 1;
     background-color: #F7FAFC;
     border-top-left-radius: 120px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 }
