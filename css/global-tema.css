@@ -1,0 +1,202 @@
+/* =========================================
+   VARIÁVEIS GLOBAIS DE ACESSIBILIDADE
+   ========================================= */
+:root {
+    --tamanho-fonte-base: 1em;
+    --altura-linha-base: 1.5;
+}
+
+body {
+    font-size: var(--tamanho-fonte-base);
+    line-height: var(--altura-linha-base);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* =========================================
+   OVERRIDE DO TEMA ESCURO (DARK MODE)
+   ========================================= */
+body.dark-theme {
+    --bg-fundo-tela: #1A202C !important; /* Fundo principal da tela */
+    --bg-painel: #1A202C !important; /* Fundo fundido com a tela para evitar marcação */
+    --cor-texto-principal: #E2E8F0 !important; /* Texto claro principal */
+    --cor-texto-secundario: #A0AEC0 !important; /* Texto secundário leve */
+    --borda-cor: #2D3748 !important; /* Bordas suaves */
+    --bg-menu-ativo: #2D3748 !important; /* Menu lateral ativo */
+}
+
+/* Mantém o background original da sidebar */
+body.dark-theme .sidebar {
+    background-color: #5DAEE0 !important;
+}
+
+body.dark-theme .main-content {
+    background-color: var(--bg-fundo-tela) !important;
+    color: var(--cor-texto-principal) !important;
+}
+
+body.dark-theme .main-content h1,
+body.dark-theme .main-content h2,
+body.dark-theme .main-content h3,
+body.dark-theme .main-content h4,
+body.dark-theme .main-content p,
+body.dark-theme .main-content label,
+body.dark-theme .main-content span,
+body.dark-theme .main-content div,
+body.dark-theme th {
+    color: var(--cor-texto-principal) !important;
+}
+
+/* Containers, Cards, e Elementos de Painel */
+body.dark-theme .card,
+body.dark-theme .card-paciente,
+body.dark-theme .container-tabela,
+body.dark-theme .container-tabela table,
+body.dark-theme .lista-agenda,
+body.dark-theme .day-summary,
+body.dark-theme .event-box,
+body.dark-theme .filtros-container,
+body.dark-theme .agenda-list-box {
+    background-color: var(--bg-painel) !important;
+    border-color: var(--borda-cor) !important;
+}
+
+/* Retira fundos indesejados de textos */
+body.dark-theme .sobre-container p {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+/* Tabelas */
+body.dark-theme .container-tabela th {
+    background-color: var(--borda-cor) !important;
+    color: var(--cor-texto-principal) !important;
+    border-color: var(--bg-fundo-tela) !important;
+}
+
+body.dark-theme td {
+    background-color: var(--bg-painel) !important;
+    color: var(--cor-texto-principal) !important;
+    border-color: var(--borda-cor) !important;
+}
+
+body.dark-theme tr:hover td {
+    background-color: var(--borda-cor) !important;
+}
+
+/* Inputs, Selects, Textareas (Restritos ao app principal) */
+body.dark-theme .app-container input, 
+body.dark-theme .app-container select, 
+body.dark-theme .app-container textarea {
+    background-color: var(--bg-painel) !important;
+    color: var(--cor-texto-principal) !important;
+    border-color: var(--borda-cor) !important;
+}
+
+/* Menu Sidebar - Apenas Cores das Animações */
+body.dark-theme .sidebar a.active {
+    background-color: var(--bg-fundo-tela) !important;
+    color: #5DAEE0 !important;
+}
+
+body.dark-theme .sidebar a.active::before { box-shadow: 10px 10px 0 0 var(--bg-fundo-tela) !important; }
+body.dark-theme .sidebar a.active::after { box-shadow: 10px -10px 0 0 var(--bg-fundo-tela) !important; }
+
+/* Hover no menu - Tom de preto puxado pro cinza e texto branco */
+body.dark-theme .nav-menu a:hover:not(.active),
+body.dark-theme .nav-bottom a:hover:not(.active) { 
+    background-color: #2D3748 !important; 
+    color: #FFFFFF !important;
+}
+
+/* Cards Agenda */
+body.dark-theme .lista-card.solid {
+    background-color: var(--borda-cor) !important;
+    color: var(--cor-texto-principal) !important;
+}
+
+body.dark-theme .lista-card.outline {
+    border-color: var(--borda-cor) !important;
+    color: var(--cor-texto-principal) !important;
+}
+
+/* Botões */
+body.dark-theme .btn-maria-ia {
+    border-color: #63B3ED !important;
+    color: #63B3ED !important;
+}
+body.dark-theme .btn-maria-ia:hover {
+    background-color: #63B3ED !important;
+    color: var(--bg-fundo-tela) !important;
+}
+
+/* Botões Sólidos (Invertidos em relação aos outline) */
+body.dark-theme .btn-assinar-todos,
+body.dark-theme .btn-chamar,
+body.dark-theme .btn-nova,
+body.dark-theme .btn-pesquisar,
+body.dark-theme .btn-pequeno,
+body.dark-theme .btn-mais {
+    background-color: #5DAEE0 !important;
+    color: var(--cor-texto-principal) !important;
+    border-color: #5DAEE0 !important;
+}
+
+body.dark-theme .btn-assinar-todos:hover,
+body.dark-theme .btn-chamar:hover,
+body.dark-theme .btn-nova:hover,
+body.dark-theme .btn-pesquisar:hover,
+body.dark-theme .btn-pequeno:hover,
+body.dark-theme .btn-mais:hover {
+    background-color: transparent !important;
+    color: #5DAEE0 !important;
+}
+
+/* Botões Outline/Transparentes */
+body.dark-theme .btn-exportar, 
+body.dark-theme .btn-atender,
+body.dark-theme .btn-visualizar, 
+body.dark-theme .btn-voltar, 
+body.dark-theme .btn-novo,
+body.dark-theme .btn-salvar {
+    border-color: #5DAEE0 !important;
+    color: #5DAEE0 !important;
+    background-color: transparent !important;
+}
+
+body.dark-theme .btn-exportar:hover, 
+body.dark-theme .btn-atender:hover,
+body.dark-theme .btn-visualizar:hover, 
+body.dark-theme .btn-voltar:hover, 
+body.dark-theme .btn-novo:hover,
+body.dark-theme .btn-salvar:hover {
+    background-color: #5DAEE0 !important;
+    color: var(--cor-texto-principal) !important;
+}
+
+/* Calendário Flatpickr */
+body.dark-theme .flatpickr-calendar {
+    background: var(--bg-painel) !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+body.dark-theme .flatpickr-day, 
+body.dark-theme .flatpickr-weekday,
+body.dark-theme .flatpickr-months .flatpickr-month {
+    color: var(--cor-texto-principal) !important;
+    fill: var(--cor-texto-principal) !important;
+}
+body.dark-theme .flatpickr-day:hover:not(.selected):not(.today) {
+    background: var(--borda-cor) !important;
+}
+body.dark-theme .flatpickr-day.selected, 
+body.dark-theme .flatpickr-day.today {
+    border-color: #5DAEE0 !important;
+    background-color: #5DAEE0 !important;
+    color: #fff !important;
+}
+
+/* Textos descritivos */
+body.dark-theme .status-pendente, 
+body.dark-theme .status-assinado {
+    color: var(--cor-texto-principal) !important;
+}

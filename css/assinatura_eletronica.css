@@ -385,11 +385,11 @@ tr:hover td {
 .status-pendente {
     color: #5DAEE0;
     font-weight: 800;
-    font-size: 15px;
+    font-size: 1em;
 }
 
 .status-assinado {
     color: #A0AEC0; /* Cinza para demonstrar que a ação já foi concluída */
     font-weight: 800;
-    font-size: 15px;
+    font-size: 1em;
 }

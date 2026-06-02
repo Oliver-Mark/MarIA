@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #5DAEE0;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    color: #2D3748;
+}
+
+.app-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================================
+   SIDEBAR FIXA (Sem expansão)
+   ========================================= */
+.sidebar {
+    min-width: 250px;
+    background-color: #5DAEE0;
+    color: #F7FAFC;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0 30px 10px;
+}
+
+.logo {
+    margin-bottom: 40px;
+    display: flex;
+    align-self: center;
+}
+
+.logo img {
+    max-width: 180px;
+    height: auto;
+    display: block;
+}
+
+.logo-link {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.logo-link:hover {
+    opacity: 0.8;
+}
+
+.nav-menu {
+    flex-grow: 1;
+}
+
+.sidebar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+}
+
+.sidebar a {
+    color: #F7FAFC;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 10px 10px 10px 20px;
+    border-radius: 8px;
+    position: relative;
+    transition: 0.2s;
+}
+
+.sidebar i {
+    text-align: center;
+    font-size: 34px;
+}
+
+/* Estilo de hover alinhado com a tela inicial */
+.nav-menu a:hover:not(.active) {
+    background-color: #F7FAFC;
+    color: #5DAEE0;
+    border-radius: 50px;
+}
+
+.nav-bottom a:hover:not(.active) {
+    background-color: #F7FAFC;
+    color: #5DAEE0;
+    border-radius: 50px;
+}
+
+/* =========================================
+   CURVAS DO MENU ATIVO
+   ========================================= */
+.sidebar a.active {
+    background-color: #F7FAFC;
+    color: #5DAEE0;
+    border-radius: 30px 0 0 30px;
+}
+
+.sidebar a.active::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border-bottom-right-radius: 50%;
+    box-shadow: 10px 10px 0 0 #F7FAFC;
+    pointer-events: none;
+}
+
+.sidebar a.active::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border-top-right-radius: 50%;
+    box-shadow: 10px -10px 0 0 #F7FAFC;
+    pointer-events: none;
+}
+
+/* =========================================
+   ÁREA PRINCIPAL
+   ========================================= */
+.main-content {
+    flex-grow: 1;
+    background-color: #F7FAFC;
+    border-top-left-radius: 120px;    
+    border-bottom-right-radius: 120px;
+    padding: 100px 120px; 
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* =========================================
+   CONTEÚDO DO TEXTO SOBRE
+   ========================================= */
+.sobre-container {
+    max-width: 800px;
+}
+
+.sobre-container h2 {
+    color: #2D3748;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.sobre-container p {
+    color: #4A5568; /* Uma cor um pouco mais suave que o título */
+    font-size: 16px;
+    line-height: 1.7; /* Maior espaçamento entre as linhas para facilitar a leitura */
+    margin-bottom: 25px;
+    text-align: left;
+}

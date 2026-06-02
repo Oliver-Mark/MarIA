@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarIA - Configurações</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <link rel="stylesheet" href="css/configuracoes.css">
+    <link rel="stylesheet" href="css/global-tema.css">
+    <script src="Js/tema.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        
+        <aside class="sidebar">
+            <div class="logo">
+                <a href="tela_inicial.html" class="logo-link">
+                    <img src="img/Logo_mini_plus.png" alt="Logo MarIA" class="logo-img">
+                </a>                    
+            </div>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="agenda.html"><i class="ph-light ph-calendar-dots"></i> <span class="menu-text">Agenda</span></a></li>
+                    <li><a href="sala_de_espera.html"><i class="ph-light ph-clock-user"></i> <span class="menu-text">Sala de Espera</span></a></li>
+                    <li><a href="pacientes.html"><i class="ph-light ph-users"></i> <span class="menu-text">Pacientes</span></a></li>
+                    <li><a href="assinatura_eletronica.html"><i class="ph-light ph-pen-nib"></i> <span class="menu-text">Assinatura Eletrônica</span></a></li>
+                    <li><a href="dashboard.html"><i class="ph-light ph-chart-pie-slice"></i> <span class="menu-text">Dashboard</span></a></li>
+                </ul>
+            </nav>
+            
+            <nav class="nav-bottom">
+                <ul>
+                    <li><a href="informacoes.html"><i class="ph-light ph-info"></i> <span class="menu-text">Sobre</span></a></li>
+                    <li><a href="configuracoes.html" class="active"><i class="ph-light ph-gear"></i> <span class="menu-text">Configurações</span></a></li>
+                    <li><a href="login.html"><i class="ph-light ph-sign-out"></i> <span class="menu-text">Sair</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="config-layout">
+                
+                <div class="config-sidebar">
+                    <h2>Configurações</h2>
+                    <ul class="config-menu">
+                        <li class="active" onclick="abrirAba('pessoais', this)">
+                            <i class="ph-fill ph-user-circle"></i> Informações Pessoais
+                        </li>
+                        <li onclick="abrirAba('aparencia', this)">
+                            <i class="ph-fill ph-palette"></i> Aparência e Acessibilidade
+                        </li>
+                        <li onclick="abrirAba('ia', this)">
+                            <i class="ph-fill ph-robot"></i> Inteligência Artificial
+                        </li>
+                        <li onclick="abrirAba('seguranca', this)">
+                            <i class="ph-fill ph-lock-key"></i> Segurança
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="config-panels">
+                    
+                    <div id="pessoais" class="panel ativo">
+                        <div class="perfil-header">
+                            <div class="foto-container">
+                                <img id="foto-perfil-preview" class="foto-usuario" src="https://ui-avatars.com/api/?name=Sandra+Helena&background=5DAEE0&color=fff&size=100" alt="Dra. Sandra">
+                                <div class="botoes-foto">
+                                    <button id="btn-alterar-foto" class="btn-pequeno">Alterar foto</button>
+                                    <button id="btn-excluir-foto" class="btn-excluir">Excluir</button>
+                                </div>
+                            </div>
+                            <div class="header-inputs">
+                                <div class="input-group">
+                                    <label>Nome Completo</label>
+                                    <input type="text" id="input-nome-completo" value="Sandra Helena Marques Gomes" readonly>
+                                </div>
+                                <div class="input-group">
+                                    <label>Nome de Exibição</label>
+                                    <input type="text" id="input-nome-exibicao" value="Dra. Sandra" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3">
+                            <div class="input-group">
+                                <label>CRM</label>
+                                <input type="text" value="45298-GO" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>RQE</label>
+                                <input type="text" value="12874" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>CPF</label>
+                                <input type="text" value="000.000.000-00" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="input-group">
+                                <label>Especialidade</label>
+                                <input type="text" value="Cardiologia/Medicina Intensiva" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>Gênero</label>
+                                <select disabled>
+                                    <option>Feminino</option>
+                                    <option>Masculino</option>
+                                    <option>Outro</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>E-mail Institucional</label>
+                                <input type="email" value="s.helena@hospitalcentral.com.br" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>E-mail de Recuperação</label>
+                                <input type="email" id="input-email-recuperacao" value="sandra.gomes@provedor.com" readonly>
+                            </div>
+                        </div>
+
+                        <hr class="divisor">
+
+                        <div class="form-grid-2">
+                            <div class="input-group">
+                                <label>Status do Certificado Digital</label>
+                                <input type="text" value="Ativo (Válido até 12/2026)" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>Tipo de Assinatura</label>
+                                <input type="text" value="Digital (ICP-Brasil)" readonly>
+                            </div>
+                        </div>
+                        
+                        <div class="box-salvar" style="gap: 15px;">
+                            <button type="button" id="btn-editar-pessoais" class="btn-salvar">Editar</button>
+                            <button class="btn-salvar">Salvar alterações</button>
+                        </div>
+                    </div>
+
+                    <div id="aparencia" class="panel">
+                        <div class="config-secao">
+                            <h3>Tema</h3>
+                            <div class="tema-opcoes">
+                                <span class="label-toggle">Tema Claro</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="toggle-tema">
+                                    <span class="slider round"></span>
+                                </label>
+                                <span class="label-toggle">Tema Escuro</span>
+                            </div>
+                        </div>
+
+                        <div class="config-secao">
+                            <h3>Configurações de Texto (Tipografia)</h3>
+                            <div class="form-grid-2">
+                                <div class="controle-range">
+                                    <label>Tamanho da fonte</label>
+                                    <input type="range" id="range-fonte" min="90" max="150" value="100">
+                                    <span id="valor-fonte" class="valor-range">100%</span>
+                                </div>
+                                <div class="controle-range">
+                                    <label>Espaço entre linhas</label>
+                                    <input type="range" id="range-linha" min="1.2" max="2.0" step="0.1" value="1.5">
+                                    <span id="valor-linha" class="valor-range">1.5</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="config-secao">
+                            <h3>Acessibilidade Visual</h3>
+                            <div class="form-grid-2">
+                                <div class="toggle-group">
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <span>Modo Daltonismo</span>
+                                </div>
+                                <div class="toggle-group">
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <span>Ler em voz alta</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="config-secao">
+                            <h3>Data e Hora</h3>
+                            <div class="form-grid-2">
+                                <div class="input-group">
+                                    <label>Formato da data</label>
+                                    <select><option>DD/MM/AAAA</option></select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Formato de hora</label>
+                                    <select><option>24h</option></select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Fuso horário</label>
+                                    <select><option>(GMT-03:00) Brasília, Brasil</option></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="box-salvar">
+                            <button class="btn-salvar">Salvar alterações</button>
+                        </div>
+                    </div>
+
+                    <div id="ia" class="panel">
+                        
+                        <div class="box-controles">
+                            <h3>Modo de Assistência (Autonomia)</h3>
+                            <div class="controle-linha">
+                                <div class="controle-texto">
+                                    <h4>Apoio Diagnóstico</h4>
+                                    <p>Exibir diagnósticos prováveis baseados em sintomas históricos.</p>
+                                </div>
+                                <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+                            </div>
+                            <div class="controle-linha">
+                                <div class="controle-texto">
+                                    <h4>Sugestão de CID-10</h4>
+                                </div>
+                                <label class="switch"><input type="checkbox"><span class="slider round"></span></label>
+                            </div>
+                        </div>
+
+                        <div class="box-controles">
+                            <h3>Triagem e Sugestões</h3>
+                            <div class="controle-linha">
+                                <div class="controle-texto">
+                                    <h4>Análise Preditiva de Exames</h4>
+                                    <p>Notificar tendências laboratoriais críticas.</p>
+                                </div>
+                                <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+                            </div>
+                            <div class="controle-linha">
+                                <div class="controle-texto">
+                                    <h4>Alertas de Risco</h4>
+                                    <p>Exibir pontuação de sepse e pneumonia.</p>
+                                </div>
+                                <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+                            </div>
+                        </div>
+
+                        <div class="box-controles">
+                            <h3>Produtividade e Humanização</h3>
+                            <div class="controle-linha">
+                                <div class="controle-texto">
+                                    <h4>Resumo Automático de Retorno</h4>
+                                    <p>Gerar resumo do prontuário.</p>
+                                </div>
+                                <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+                            </div>
+                            <div class="controle-linha">
+                                <div class="controle-texto">
+                                    <h4>Preenchimento de Prontuário por Voz</h4>
+                                    <p>Reconhecimento de fala ativa.</p>
+                                </div>
+                                <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+                            </div>
+                        </div>
+
+                        <div class="box-salvar">
+                            <button class="btn-salvar">Salvar alterações</button>
+                        </div>
+                    </div>
+
+                    <div id="seguranca" class="panel">
+                        <div class="config-secao">
+                            <h3>Autenticação e Acesso</h3>
+                            <div class="link-acao">
+                                <a><u>Alterar senha</u></a>
+                            </div>
+                            <br>
+                            <div class="controle-linha sem-borda">
+                                <div class="controle-texto">
+                                    <h4>Autenticação de duas etapas</h4>
+                                </div>
+                                <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+                            </div>
+                        </div>
+
+                        <div class="config-secao">
+                            <h3>Sessões Ativas e Histórico</h3>
+                            <div class="info-sessao">
+                                <h4>Dispositivos conectados:</h4>
+                                <p>Desktop Windows - Anápolis, GO (Este dispositivo)</p>
+                            </div>
+                        </div>
+
+                        <div class="config-secao">
+                            <h3>Privacidade e LGPD</h3>
+                            <div class="link-acao">
+                                <a><u>Termos de Uso & Política de Dados</u></a>
+                            </div>
+                        </div>
+
+                        <div class="box-salvar" style="margin-top: 100px;">
+                            <button class="btn-salvar">Salvar alterações</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="Js/configuracoes.js"></script>
+</body>
+</html>
