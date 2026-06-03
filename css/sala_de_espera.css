@@ -358,9 +358,15 @@ tr:hover td {
     border: 2px solid #5DAEE0;
 }
 
-.btn-chamar:hover {
+.btn-chamar:hover:not(:disabled) {
     background-color: transparent;
     color: #5DAEE0;
+}
+
+.btn-chamar:disabled {
+    background-color: #A0AEC0;
+    border-color: #A0AEC0;
+    cursor: not-allowed;
 }
 
 .btn-atender {
@@ -372,4 +378,56 @@ tr:hover td {
 .btn-atender:hover {
     background-color: #5DAEE0;
     color: #F7FAFC;
+}
+
+/* Classes para as novas situações na Sala de Espera */
+.status-em-atendimento {
+    color: #5DAEE0; /* Azul MarIA para denotar processo ativo */
+    font-weight: 800;
+    font-size: 1em;
+}
+
+/* =========================================
+   MODAL CHAMAR PACIENTE
+   ========================================= */
+.modal-padrao {
+    border: 2px solid #5DAEE0;
+    font-family: 'Inter', sans-serif;
+    border-radius: 20px;
+    padding: 40px 60px;
+    background-color: #F7FAFC;
+    color: #2D3748;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    min-width: 400px;
+}
+
+.modal-padrao::backdrop {
+    background-color: rgba(45, 55, 72, 0.7);
+}
+
+.modal-icone {
+    font-size: 50px;
+    color: #5DAEE0;
+    margin-bottom: 20px;
+}
+
+.modal-padrao h2 { font-size: 24px; margin-bottom: 10px; }
+.modal-padrao h3 { font-size: 18px; color: #718096; margin-bottom: 25px; font-weight: 500; }
+
+.senha-destaque {
+    font-size: 36px; color: #2D3748; margin-bottom: 25px;
+    background: #5DAEE0; padding: 15px; border-radius: 50px; border: 2px solid #5DAEE0;
+}
+
+.timer-texto { font-size: 16px; font-weight: 600; color: #A0AEC0; }
+.timer-texto span { color: #E53E3E; font-weight: 800; }
+
+.status-atendido {
+    color: #A0AEC0; /* Cinza para indicar uma ação já finalizada/passada */
+    font-weight: 800;
+    font-size: 1em;
 }

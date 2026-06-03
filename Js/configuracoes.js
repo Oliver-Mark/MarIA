@@ -11,7 +11,7 @@ function carregarConfiguracoes() {
     const config = JSON.parse(localStorage.getItem('maria_config')) || {};
     
     // Reverte o Tema
-    toggleTema.checked = !!config.temaEscuro;
+    if (toggleTema) toggleTema.checked = !!config.temaEscuro;
     if (config.temaEscuro) {
         document.body.classList.add('dark-theme');
     } else {
@@ -20,21 +20,25 @@ function carregarConfiguracoes() {
     
     // Reverte a Fonte
     const fonteValor = config.fonte || 100;
-    rangeFonte.value = fonteValor;
-    document.getElementById('valor-fonte').innerText = fonteValor + '%';
+    if (rangeFonte) rangeFonte.value = fonteValor;
+    const valFonteEl = document.getElementById('valor-fonte');
+    if (valFonteEl) valFonteEl.innerText = fonteValor + '%';
     document.documentElement.style.setProperty('--tamanho-fonte-base', (fonteValor / 100) + 'em');
     
     // Reverte o Espaçamento de Linha
     const linhaValor = config.linha || 1.5;
-    rangeLinha.value = linhaValor;
-    document.getElementById('valor-linha').innerText = linhaValor;
+    if (rangeLinha) rangeLinha.value = linhaValor;
+    const valLinhaEl = document.getElementById('valor-linha');
+    if (valLinhaEl) valLinhaEl.innerText = linhaValor;
     document.documentElement.style.setProperty('--altura-linha-base', linhaValor);
 
     // Reverte a Foto
-    if (config.foto) {
-        imgPreview.src = config.foto;
-    } else {
-        imgPreview.src = "https://ui-avatars.com/api/?name=Sandra+Helena&background=5DAEE0&color=fff&size=100";
+    if (imgPreview) {
+        if (config.foto) {
+            imgPreview.src = config.foto;
+        } else {
+            imgPreview.src = "https://ui-avatars.com/api/?name=Sandra+Helena&background=5DAEE0&color=fff&size=100";
+        }
     }
 
     fotoTempBase64 = null;
@@ -71,43 +75,57 @@ document.querySelectorAll('.panel input, .panel select').forEach(input => {
 });
 
 // Live previews (Mostra a mudança em tempo real sem precisar salvar)
-toggleTema.addEventListener('change', (e) => {
-    e.target.checked ? document.body.classList.add('dark-theme') : document.body.classList.remove('dark-theme');
-});
-rangeFonte.addEventListener('input', (e) => {
-    document.getElementById('valor-fonte').innerText = e.target.value + '%';
-    document.documentElement.style.setProperty('--tamanho-fonte-base', (e.target.value / 100) + 'em');
-});
-rangeLinha.addEventListener('input', (e) => {
-    document.getElementById('valor-linha').innerText = e.target.value;
-    document.documentElement.style.setProperty('--altura-linha-base', e.target.value);
-});
+if (toggleTema) {
+    toggleTema.addEventListener('change', (e) => {
+        e.target.checked ? document.body.classList.add('dark-theme') : document.body.classList.remove('dark-theme');
+    });
+}
+if (rangeFonte) {
+    rangeFonte.addEventListener('input', (e) => {
+        const valFonteEl = document.getElementById('valor-fonte');
+        if (valFonteEl) valFonteEl.innerText = e.target.value + '%';
+        document.documentElement.style.setProperty('--tamanho-fonte-base', (e.target.value / 100) + 'em');
+    });
+}
+if (rangeLinha) {
+    rangeLinha.addEventListener('input', (e) => {
+        const valLinhaEl = document.getElementById('valor-linha');
+        if (valLinhaEl) valLinhaEl.innerText = e.target.value;
+        document.documentElement.style.setProperty('--altura-linha-base', e.target.value);
+    });
+}
 
 // Alterar Foto
-document.getElementById('btn-alterar-foto').addEventListener('click', () => {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file'; fileInput.accept = 'image/*';
-    fileInput.onchange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                fotoTempBase64 = event.target.result;
-                imgPreview.src = fotoTempBase64;
-                temAlteracoes = true;
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-    fileInput.click();
-});
+const btnAlterarFoto = document.getElementById('btn-alterar-foto');
+if (btnAlterarFoto) {
+    btnAlterarFoto.addEventListener('click', () => {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file'; fileInput.accept = 'image/*';
+        fileInput.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    fotoTempBase64 = event.target.result;
+                    if (imgPreview) imgPreview.src = fotoTempBase64;
+                    temAlteracoes = true;
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+        fileInput.click();
+    });
+}
 
 // Remover Foto
-document.getElementById('btn-excluir-foto').addEventListener('click', () => {
-    fotoTempBase64 = ""; // String vazia sinaliza a exclusão
-    imgPreview.src = "https://ui-avatars.com/api/?name=Sandra+Helena&background=5DAEE0&color=fff&size=100";
-    temAlteracoes = true;
-});
+const btnExcluirFoto = document.getElementById('btn-excluir-foto');
+if (btnExcluirFoto) {
+    btnExcluirFoto.addEventListener('click', () => {
+        fotoTempBase64 = ""; // String vazia sinaliza a exclusão
+        if (imgPreview) imgPreview.src = "https://ui-avatars.com/api/?name=Sandra+Helena&background=5DAEE0&color=fff&size=100";
+        temAlteracoes = true;
+    });
+}
 
 // Botão Editar Informações Pessoais
 const btnEditarPessoais = document.getElementById('btn-editar-pessoais');
@@ -124,9 +142,9 @@ document.querySelectorAll('.btn-salvar').forEach(btn => {
     if (btn.id === 'btn-editar-pessoais') return; // Evita que o botão Editar chame a função de salvar
     btn.addEventListener('click', () => {
         const config = JSON.parse(localStorage.getItem('maria_config')) || {};
-        config.temaEscuro = toggleTema.checked;
-        config.fonte = rangeFonte.value;
-        config.linha = rangeLinha.value;
+        if (toggleTema) config.temaEscuro = toggleTema.checked;
+        if (rangeFonte) config.fonte = rangeFonte.value;
+        if (rangeLinha) config.linha = rangeLinha.value;
         
         if (fotoTempBase64 !== null) {
             if (fotoTempBase64 === "") {

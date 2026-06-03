@@ -1,8 +1,52 @@
-<div id="ficha-paciente-view" style="display: none;">
-                    
-                    <button class="btn-voltar" onclick="voltarParaLista()"><i class="ph-bold ph-arrow-left"></i> Voltar para a pesquisa</button>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarIA - Triagem do Paciente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/triagem.css">
+    <link rel="stylesheet" href="css/global-tema.css">
+    <script src="Js/tema.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <a href="tela_inicial.html" class="logo-link">
+                    <img src="img/Logo_mini_plus.png" alt="Logo MarIA" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="agenda.html"><i class="ph-light ph-calendar-dots"></i> <span class="menu-text">Agenda</span></a></li>
+                    <li><a href="sala_de_espera.html" class="active"><i class="ph-light ph-clock-user"></i> <span class="menu-text">Sala de Espera</span></a></li>
+                    <li><a href="pacientes.html"><i class="ph-light ph-users"></i> <span class="menu-text">Pacientes</span></a></li>
+                    <li><a href="assinatura_eletronica.html"><i class="ph-light ph-pen-nib"></i> <span class="menu-text">Assinatura Eletrônica</span></a></li>
+                    <li><a href="dashboard.html"><i class="ph-light ph-chart-pie-slice"></i> <span class="menu-text">Dashboard</span></a></li>
+                </ul>
+            </nav>
+            <nav class="nav-bottom">
+                <ul>
+                    <li><a href="informacoes.html"><i class="ph-light ph-info"></i> <span class="menu-text">Sobre</span></a></li>
+                    <li><a href="configuracoes.html"><i class="ph-light ph-gear"></i> <span class="menu-text">Configurações</span></a></li>
+                    <li><a href="login.html"><i class="ph-light ph-sign-out"></i> <span class="menu-text">Sair</span></a></li>
+                </ul>
+            </nav>
+        </aside>
 
-                    <div class="card-paciente">
+        <main class="main-content">
+            <div id="ficha-paciente-view">
+                
+                <div class="acoes-topo">
+                    <button class="btn-voltar" onclick="window.location.href='sala_de_espera.html'"><i class="ph-bold ph-arrow-left"></i> Voltar para a Sala de Espera</button>
+                    <button class="btn-nova" onclick="document.getElementById('modal-anamnese').showModal()"><i class="ph-bold ph-plus"></i> Nova Anamnese</button>
+                </div>
+
+                <div class="card-paciente">
                         <div class="secao-cadastro">
                             <div class="foto-paciente">
                                 <img src="https://i.pravatar.cc/300?img=11" alt="Foto do paciente">
@@ -49,10 +93,10 @@
                                     <label for="prioridade">Prioridade</label>
                                     <input id="prioridade" type="text" value="Baixíssimo" readonly>
                                 </div>                            
-                                <div class="input-group group-textarea">
-                                    <label for="hpp">HPP e Observações</label>
-                                    <textarea id="hpp" readonly>Cliente relatou dor no pulso.</textarea>
-                                </div>
+                                    <div class="input-group group-textarea">
+                                        <label for="hpp">HPP e Observações</label>
+                                        <textarea id="hpp" readonly>Cliente relatou dor no pulso.</textarea>
+                                    </div>
                                 <div class="input-group">
                                     <label for="peso">Peso</label>
                                     <input id="peso" type="text" value="80Kg" readonly>
@@ -66,15 +110,37 @@
                         <div class="secao-historico">
                             <div class="header-historico">
                                 <h3>Histórico</h3>
-                                <button class="btn-nova">Nova Anamnese</button>
                             </div>
                             <div class="lista-historico">
                                 <div class="item-historico">
                                     <span class="medico">Dr. Pedro Guimarães</span>
                                     <span class="especialidade"> Oftalmologista</span>
+                                    <span class="data"> 12/03/2024</span>
                                     <button class="btn-ver"><i class="ph-bold ph-eye"></i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                <dialog id="modal-anamnese" class="modal-desenvolvimento">
+                    <div style="font-size: 50px; color: #5DAEE0; margin-bottom: 15px;">
+                        <i class="ph-bold ph-wrench"></i>
+                    </div>
+                    <h2 style="font-size: 24px; margin-bottom: 15px;">Módulo em Desenvolvimento</h2>
+                    <p style="font-size: 16px; color: #718096; line-height: 1.5; margin-bottom: 20px;">
+                        Aqui é onde o prontuário será feito para se adaptar ao<br>
+                        profissional de saúde de acordo com sua especialidade.<br>
+                        Aguarde!
+                    </p>
+                    <div class="barra-progresso-container">
+                        <div class="barra-progresso-fill">80% Concluído</div>
+                    </div>
+                    <button class="btn-fechar-modal" onclick="document.getElementById('modal-anamnese').close()">Entendi</button>
+                </dialog>
+            </div>
+        </main>
+    </div>
+    <script src="Js/sidebar.js"></script>
+</body>
+</html>

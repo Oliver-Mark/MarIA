@@ -119,6 +119,12 @@ body.dark-theme .lista-card.outline {
     color: var(--cor-texto-principal) !important;
 }
 
+/* Dropdown do filtro da agenda em Dark Mode */
+body.dark-theme #filtro-agenda option {
+    background-color: var(--bg-painel) !important;
+    color: var(--cor-texto-principal) !important;
+}
+
 /* Botões */
 body.dark-theme .btn-maria-ia {
     border-color: #63B3ED !important;
@@ -197,6 +203,30 @@ body.dark-theme .flatpickr-day.today {
 
 /* Textos descritivos */
 body.dark-theme .status-pendente, 
-body.dark-theme .status-assinado {
+body.dark-theme .status-assinado,
+body.dark-theme .status-em-atendimento,
+body.dark-theme .status-atendido {
     color: var(--cor-texto-principal) !important;
+}
+
+/* Modal Chamar Paciente (Sala de Espera) */
+body.dark-theme .modal-padrao {
+    background-color: var(--bg-painel) !important;
+    color: var(--cor-texto-principal) !important;
+    border: 1px solid var(--borda-cor) !important;
+}
+
+body.dark-theme .senha-destaque {
+    background-color: var(--borda-cor) !important;
+    color: #5DAEE0 !important;
+}
+
+/* Modal Em Desenvolvimento (Triagem) */
+body.dark-theme .modal-desenvolvimento {
+    background-color: var(--bg-painel) !important;
+    color: var(--cor-texto-principal) !important;
+    border-color: var(--borda-cor) !important;
+}
+body.dark-theme .barra-progresso-container {
+    background-color: var(--borda-cor) !important;
 }

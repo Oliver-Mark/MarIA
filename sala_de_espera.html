@@ -47,91 +47,100 @@
                 <div class="filtro-selecao">
                     <label>Situação:</label>
                     <div class="container-selecao">
-                        <select>
+                        <select id="filtro-situacao">
                             <option value="aguardando">Aguardando</option>
-                            <option value="em_atendimento">Em Atendimento</option>
-                            <option value="finalizado">Finalizado</option>
+                            <option value="em-atendimento">Em Atendimento</option>
+                            <option value="atendido">Atendido</option>
                         </select>
                         <i class="ph-bold ph-caret-down"></i>
                     </div>
                 </div>
                 <div class="container-tabela">
-                    <table>
+                    <table class="tabela-sala-espera">
                         <thead>
                             <tr>
                                 <th>Hora de<br>chegada</th>
                                 <th>Hora<br>marcada</th>
                                 <th>Nome do paciente</th>
                                 <th>Motivo</th>
-                                <th></th>
+                                <th>Ações / Situação</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr class="paciente-row" data-status="aguardando">
                                 <td>08:30</td>
                                 <td>09:30</td>
                                 <td>João Pedro Santos</td>
                                 <td>Consulta</td>
                                 <td class="celula-acao">
                                     <button class="btn-chamar">Chamar</button>
-                                    <button class="btn-atender">Atender</button>
+                                    <button class="btn-atender" onclick="window.location.href='triagem.html'">Atender</button>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="paciente-row" data-status="em-atendimento">
                                 <td>09:53</td>
                                 <td>10:00</td>
                                 <td>Maria Eduarda</td>
                                 <td>Retorno</td>
                                 <td class="celula-acao">
-                                    <button class="btn-chamar">Chamar</button>
-                                    <button class="btn-atender">Atender</button>
+                                    <span class="status-em-atendimento">Em Atendimento</span>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="paciente-row" data-status="aguardando">
                                 <td>10:15</td>
                                 <td>11:00</td>
                                 <td>Ana Beatriz Oliveira</td>
                                 <td>Consulta</td>
                                 <td class="celula-acao">
                                     <button class="btn-chamar">Chamar</button>
-                                    <button class="btn-atender">Atender</button>
+                                    <button class="btn-atender" onclick="window.location.href='triagem.html'">Atender</button>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="paciente-row" data-status="atendido">
                                 <td>10:21</td>
                                 <td>10:30</td>
                                 <td>Carlos Augusto</td>
                                 <td>Exame</td>
                                 <td class="celula-acao">
-                                    <button class="btn-chamar">Chamar</button>
-                                    <button class="btn-atender">Atender</button>
+                                    <span class="status-atendido">Atendido</span>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="paciente-row" data-status="aguardando">
                                 <td>10:30</td>
                                 <td>XXX</td>
                                 <td>Marcos Rocha</td>
                                 <td>Consulta</td>
                                 <td class="celula-acao">
                                     <button class="btn-chamar">Chamar</button>
-                                    <button class="btn-atender">Atender</button>
+                                    <button class="btn-atender" onclick="window.location.href='triagem.html'">Atender</button>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="paciente-row" data-status="atendido">
                                 <td>10:47</td>
                                 <td>XXX</td>
                                 <td>José Mendes</td>
                                 <td>Exame</td>
                                 <td class="celula-acao">
-                                    <button class="btn-chamar">Chamar</button>
-                                    <button class="btn-atender">Atender</button>
+                                    <span class="status-atendido">Atendido</span>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Modal de Chamada do Paciente -->
+                <dialog id="modal-chamar-paciente" class="modal-padrao">
+                    <div class="modal-icone">
+                        <i class="ph-bold ph-megaphone"></i>
+                    </div>
+                    <h2>Chamando Paciente...</h2>
+                    <h3 id="modal-nome-paciente">Nome do Paciente</h3>
+                    <h1 id="modal-senha-paciente" class="senha-destaque">Senha: A01</h1>
+                    <p class="timer-texto">Aguardando... <span id="modal-timer">10</span>s</p>
+                </dialog>
             </main>
         </div>        
         <script src="Js/sidebar.js"></script>
+        <script src="Js/app.js"></script>
     </body>
 </html>

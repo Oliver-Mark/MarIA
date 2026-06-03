@@ -1,0 +1,441 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #5DAEE0;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    color: #2D3748;
+}
+
+.app-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================================
+   SIDEBAR (Padrão do Sistema)
+   ========================================= */
+.sidebar {
+    width: 90px;
+    background-color: #5DAEE0;
+    color: #F7FAFC;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0 30px 10px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar:hover {
+    width: 250px;
+}
+
+.logo {
+    margin-bottom: 40px;
+    display: flex;
+    align-self: flex-start;
+    padding-left: 5px;
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0s 0.15s;
+}
+
+.sidebar:hover .logo {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease 0.2s, visibility 0s 0s;
+}
+
+.logo img {
+    max-width: 180px;
+    height: auto;
+    display: block;
+}
+
+.logo-link {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.logo-link:hover {
+    opacity: 0.8;
+}
+
+.nav-menu {
+    flex-grow: 1;
+}
+
+.sidebar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+}
+
+.sidebar a {
+    color: #F7FAFC;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 10px 10px 10px 20px;
+    border-radius: 8px;
+    position: relative;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.sidebar i {
+    text-align: center;
+    font-size: 34px;
+    min-width: 34px;
+}
+
+.menu-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0s 0.15s;
+}
+
+.sidebar:hover .menu-text {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease 0.2s, visibility 0s 0s;
+}
+
+.nav-menu a:hover:not(.active),
+.nav-bottom a:hover:not(.active) {
+    background-color: #F7FAFC;
+    color: #5DAEE0;
+    border-radius: 50px;
+}
+
+.sidebar a.active {
+    background-color: #F7FAFC;
+    color: #5DAEE0;
+    border-radius: 30px 0 0 30px;
+}
+
+.sidebar a.active::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border-bottom-right-radius: 50%;
+    box-shadow: 10px 10px 0 0 #F7FAFC;
+    pointer-events: none;
+}
+
+.sidebar a.active::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border-top-right-radius: 50%;
+    box-shadow: 10px -10px 0 0 #F7FAFC;
+    pointer-events: none;
+}
+
+.sidebar.mantem-aberto {
+    width: 250px !important;
+    transition: none !important;
+}
+
+.sidebar.mantem-aberto .logo,
+.sidebar.mantem-aberto .menu-text {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
+}
+
+/* =========================================
+   ÁREA PRINCIPAL DE TRIAGEM E FICHA
+   ========================================= */
+.main-content {
+    flex-grow: 1;
+    background-color: #F7FAFC;
+    border-top-left-radius: 120px; 
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.acoes-topo {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border: none;
+    color: #5DAEE0;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-voltar:hover {
+    color: #4A90E2;
+}
+
+.btn-nova {
+    background-color: #5DAEE0;
+    color: #F7FAFC;
+    border: 2px solid #5DAEE0;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-nova:hover {
+    background-color: #F7FAFC;
+    color: #5DAEE0;
+    border: 2px solid #5DAEE0;
+}
+
+.card-paciente {
+    border: 3px solid #5DAEE0;
+    border-radius: 30px;
+    background-color: #F7FAFC;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: calc(100vh - 160px);
+}
+
+.card-paciente::-webkit-scrollbar {
+    width: 0.1px;
+}
+
+.card-paciente::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.card-paciente h3 {
+    color: #2D3748;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2D3748;
+}
+
+.input-group input,
+.input-group textarea {
+    padding: 8px 15px;
+    border: 1px solid #5DAEE0;
+    border-radius: 50px;
+    background-color: #F7FAFC;
+    color: #2D3748;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.input-group textarea {
+    resize: none;
+    border-radius: 10px;
+    height: 100%;
+    min-height: 80px;
+}
+
+.input-group.group-textarea {
+    grid-column: span 3;
+}
+
+.secao-cadastro {
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+    border-bottom: 3px solid #5DAEE0;
+}
+
+.foto-paciente {
+    width: 180px;
+    height: 180px;
+    flex-shrink: 0;
+}
+
+.foto-paciente img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.grade-cadastro {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 20px 30px;
+    align-content: center;
+}
+
+.secao-triagem {
+    padding: 30px;
+    border-bottom: 3px solid #5DAEE0;
+}
+
+.grade-triagem {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+    gap: 20px 30px;
+}
+
+.input-group.group-textarea {
+    grid-column: 4; /* Trava a caixa de texto na 4ª coluna */
+    grid-row: 1 / span 2; /* Faz ela esticar para baixo, ocupando 2 linhas */
+    height: 100%;
+}
+
+.input-group.group-textarea textarea {
+    resize: none;
+    border-radius: 10px;
+    height: 100%; /* Força a caixa a preencher a altura das 2 linhas */
+    min-height: 120px;
+}
+
+.secao-historico {
+    padding: 30px;
+}
+
+.header-historico {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-historico h3 {
+    margin-bottom: 0;
+}
+
+.lista-historico {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item-historico {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #5DAEE0;
+    border-radius: 20px;
+    padding: 12px 25px;
+    color: #2D3748;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.btn-ver {
+    background-color: transparent;
+    border: none;
+    color: #2D3748;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.btn-ver:hover {
+    color: #5DAEE0;
+}
+
+/* =========================================
+   MODAL EM DESENVOLVIMENTO
+   ========================================= */
+.modal-desenvolvimento { 
+    border: 2px solid #5DAEE0;
+    font-family: 'Inter', sans-serif;
+    border-radius: 20px;
+    padding: 40px 60px;
+    background-color: #F7FAFC;
+    color: #2D3748;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    min-width: 450px;
+}
+
+.modal-desenvolvimento::backdrop {
+    background-color: rgba(45, 55, 72, 0.7);
+}
+
+.barra-progresso-container {
+    width: 100%;
+    background-color: #E2E8F0;
+    border-radius: 50px;
+    margin: 25px 0;
+    height: 24px;
+    overflow: hidden;
+}
+
+.barra-progresso-fill {
+    height: 100%;
+    background-color: #5DAEE0;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.btn-fechar-modal {
+    background-color: transparent;
+    color: #5DAEE0;
+    border: 2px solid #5DAEE0;
+    padding: 10px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-fechar-modal:hover {
+    background-color: #5DAEE0;
+    color: #F7FAFC;
+}

@@ -1,25 +1,47 @@
 //Funções para alternar entre lista de pacientes e ficha do paciente
 function abrirFicha() {
-    document.getElementById('lista-pacientes-view').style.display = 'none';
-    document.getElementById('ficha-paciente-view').style.display = 'block';
+    const viewLista = document.getElementById('lista-pacientes-view');
+    const viewFicha = document.getElementById('ficha-paciente-view');
+    if (viewLista && viewFicha) {
+        viewLista.style.display = 'none';
+        viewFicha.style.display = 'block';
+    }
 }
 
 function voltarParaLista() {
-    document.getElementById('ficha-paciente-view').style.display = 'none';
-    document.getElementById('lista-pacientes-view').style.display = 'block';
+    const viewLista = document.getElementById('lista-pacientes-view');
+    const viewFicha = document.getElementById('ficha-paciente-view');
+    if (viewLista && viewFicha) {
+        viewFicha.style.display = 'none';
+        viewLista.style.display = 'block';
+    }
 }
 
 // Função para filtrar documentos em Assinatura Eletrônica
 document.addEventListener('DOMContentLoaded', function() {
-    flatpickr(".datepicker", {
-        dateFormat: "d/m/Y",
-        locale: "pt"
-    });
-    filtrarDocumentos();
+    if (document.getElementById('tabela-documentos')) {
+        if (typeof flatpickr !== 'undefined') {
+            flatpickr(".datepicker", {
+                dateFormat: "d/m/Y",
+                locale: "pt"
+            });
+        }
+        filtrarDocumentos();
+    }
+
+    // Filtro da Sala de Espera
+    const selectFiltroSalaEspera = document.getElementById('filtro-situacao');
+    if (selectFiltroSalaEspera) {
+        selectFiltroSalaEspera.addEventListener('change', filtrarSalaEspera);
+        filtrarSalaEspera(); // Aplica o filtro da opção que estiver selecionada no carregamento
+        inicializarBotoesChamar(); // Prepara a lógica do botão Chamar
+    }
 });
 
 function filtrarDocumentos() {
-    const filtro = document.getElementById('filtro-status').value;
+    const selectFiltro = document.getElementById('filtro-status');
+    if (!selectFiltro) return;
+    const filtro = selectFiltro.value;
     const linhas = document.querySelectorAll('#tabela-documentos tr');
 
     linhas.forEach(linha => {
@@ -31,6 +53,90 @@ function filtrarDocumentos() {
             linha.style.display = 'none';
         }
     });
+}
+
+// Função para filtrar pacientes na Sala de Espera
+function filtrarSalaEspera() {
+    const selectFiltro = document.getElementById('filtro-situacao');
+    if (!selectFiltro) return;
+    
+    const filtro = selectFiltro.value;
+    const linhas = document.querySelectorAll('.tabela-sala-espera tbody tr, .paciente-row');
+
+    linhas.forEach(linha => {
+        const status = linha.getAttribute('data-status');
+        
+        if (filtro === status) {
+            linha.style.display = '';
+        } else {
+            linha.style.display = 'none';
+        }
+    });
+}
+
+const chamadasPorPaciente = {};
+
+// Inicializa as ações dos botões "Chamar" na Sala de Espera
+function inicializarBotoesChamar() {
+    const botoesChamar = document.querySelectorAll('.btn-chamar');
+    
+    botoesChamar.forEach((btn, index) => {
+        // Criamos um ID único temporário para cada linha caso ainda não tenha
+        const row = btn.closest('tr');
+        if (!row.id) row.id = 'paciente-row-' + index;
+        
+        btn.addEventListener('click', () => {
+            const pacienteNome = row.cells[2].innerText; // O nome está na 3ª coluna
+            const pacienteId = row.id;
+            const senha = "SE-" + (100 + index); // Mock de uma senha sequencial
+
+            // Inicia ou atualiza o contador do paciente
+            if (!chamadasPorPaciente[pacienteId]) chamadasPorPaciente[pacienteId] = 0;
+            chamadasPorPaciente[pacienteId]++;
+            
+            btn.disabled = true; // Desabilita o botão ao abrir o modal
+            btn.innerText = "Chamando...";
+
+            mostrarModalChamar(pacienteNome, senha, btn, pacienteId);
+        });
+    });
+}
+
+// Função para coordenar a abertura e o fechamento do Modal de Chamada
+function mostrarModalChamar(nome, senha, btn, pacienteId) {
+    const modal = document.getElementById('modal-chamar-paciente');
+    const timerEl = document.getElementById('modal-timer');
+    if (!modal) return;
+
+    document.getElementById('modal-nome-paciente').innerText = nome;
+    document.getElementById('modal-senha-paciente').innerText = "Senha: " + senha;
+    
+    let tempoRestante = 10;
+    timerEl.innerText = tempoRestante;
+    modal.showModal(); // Função nativa do HTML <dialog>
+
+    const intervalo = setInterval(() => {
+        tempoRestante--;
+        timerEl.innerText = tempoRestante;
+
+        if (tempoRestante <= 0) {
+            clearInterval(intervalo);
+            modal.close();
+            
+            // Se atingir 3 chamadas, aplica a penalidade de 2 min (120000 ms)
+            if (chamadasPorPaciente[pacienteId] >= 3) {
+                btn.innerText = "Aguarde (2m)";
+                setTimeout(() => {
+                    chamadasPorPaciente[pacienteId] = 0; // Zera as tentativas
+                    btn.disabled = false;
+                    btn.innerText = "Chamar";
+                }, 120000); 
+            } else {
+                btn.disabled = false;
+                btn.innerText = "Chamar";
+            }
+        }
+    }, 1000);
 }
 
 //Função para atualizar gráficos
@@ -51,18 +157,24 @@ const dadosValores = {
 };
 
 // Registra o plugin de DataLabels do Chart.js (para mostrar o número em cima da barra)
-Chart.register(ChartDataLabels);
+if (window.Chart && window.ChartDataLabels) {
+    window.Chart.register(window.ChartDataLabels);
+}
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicializa Calendários
-    flatpickr(".datepicker", {
-        dateFormat: "d/m/Y",
-        locale: "pt",
-        onChange: atualizarTextoData
-    });
+    // Inicializa Calendários e Gráfico apenas se o canvas existir na página (Dashboard)
+    if (document.getElementById('meuGrafico')) {
+        if (typeof flatpickr !== 'undefined') {
+            flatpickr(".datepicker", {
+                dateFormat: "d/m/Y",
+                locale: "pt",
+                onChange: atualizarTextoData
+            });
+        }
 
-    // Cria o gráfico inicial
-    atualizarGrafico();
+        // Cria o gráfico inicial
+        atualizarGrafico();
+    }
 });
 
 function formatarDataParaTexto(dataStr) {
@@ -76,30 +188,38 @@ function formatarDataParaTexto(dataStr) {
 }
 
 function atualizarTextoData() {
-    const inicio = document.getElementById('data-inicial').value;
-    const fim = document.getElementById('data-final').value;
+    const elInicio = document.getElementById('data-inicial');
+    const elFim = document.getElementById('data-final');
+    const elTitulo = document.getElementById('titulo-data-grafico');
     
-    const textoInicio = formatarDataParaTexto(inicio);
-    const textoFim = formatarDataParaTexto(fim);
+    if (!elInicio || !elFim || !elTitulo) return;
     
-    document.getElementById('titulo-data-grafico').innerText = `${textoInicio} - ${textoFim}`;
+    const textoInicio = formatarDataParaTexto(elInicio.value);
+    const textoFim = formatarDataParaTexto(elFim.value);
+    
+    elTitulo.innerText = `${textoInicio} - ${textoFim}`;
     
     // Aqui num sistema real, você buscaria novos dados do servidor baseado nas datas.
     // Para o protótipo, apenas atualizamos o título.
 }
 
 function atualizarGrafico() {
-    const tipo = document.getElementById('filtro-tipo').value;
+    const elFiltro = document.getElementById('filtro-tipo');
+    const canvas = document.getElementById('meuGrafico');
+    
+    if (!elFiltro || !canvas || typeof window.Chart === 'undefined') return;
+
+    const tipo = elFiltro.value;
     const dadosAtuais = tipo === 'atendimentos' ? dadosAtendimentos : dadosValores;
 
-    const ctx = document.getElementById('meuGrafico').getContext('2d');
+    const ctx = canvas.getContext('2d');
 
     // Destrói o gráfico antigo se existir para não sobrepor
     if (meuGraficoInstancia) {
         meuGraficoInstancia.destroy();
     }
 
-    meuGraficoInstancia = new Chart(ctx, {
+    meuGraficoInstancia = new window.Chart(ctx, {
         type: 'bar',
         data: {
             labels: dadosAtuais.labels,
@@ -170,8 +290,13 @@ function atualizarGrafico() {
 function exportarPDF() {
     // Usa html2canvas para tirar print da div do gráfico
     const container = document.getElementById('area-exportacao');
-    const dataTitulo = document.getElementById('titulo-data-grafico').innerText;
-    const tipo = document.getElementById('filtro-tipo').value;
+    const elTitulo = document.getElementById('titulo-data-grafico');
+    const elFiltro = document.getElementById('filtro-tipo');
+
+    if (!container || !elTitulo || !elFiltro || typeof html2canvas === 'undefined' || typeof window.jspdf === 'undefined') return;
+
+    const dataTitulo = elTitulo.innerText;
+    const tipo = elFiltro.value;
 
     html2canvas(container, { scale: 2 }).then(canvas => {
         const imgData = canvas.toDataURL('image/png');

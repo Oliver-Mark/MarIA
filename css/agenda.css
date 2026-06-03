@@ -219,8 +219,37 @@ body {
     cursor: pointer;
 }
 
-.filter-header i {
-    font-size: 30px;
+#filtro {
+    font-size: 40px;
+}
+
+#down {
+    font-size: 20px;
+    position: absolute;
+    left: 190px;
+    pointer-events: none;
+}
+
+#filtro-agenda {
+    background: transparent;
+    border: none;
+    border-radius: 50px;
+    color: #5DAEE0;
+    padding: 5px 10px;
+    width: 150px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 20px;
+}
+
+#filtro-agenda option {
+    color: #5DAEE0;
+    background-color: #F7FAFC;
 }
 
 .lista-agenda {
@@ -248,7 +277,7 @@ body {
     cursor: pointer;
 }
 
-.lista-card:hover {
+.lista-card:hover:not(.oculto) {
     transform: translateY(-2px);
     opacity: 0.9;
 }
@@ -256,11 +285,23 @@ body {
 .lista-card.solid {
     background-color: #5DAEE0;
     color: #F7FAFC;
+    border-color: #5DAEE0;
 }
 
 .lista-card.outline {
     border: 2px solid #5DAEE0;
     color: #5DAEE0;
+}
+
+.lista-card.oculto {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: -15px; /* Compensa o gap de 15px da .lista-agenda quando escondido */
+    border-width: 0;
+    transform: scaleY(0.8) translateY(-10px);
+    pointer-events: none;
 }
 
 .lista-card.outline .paciente {

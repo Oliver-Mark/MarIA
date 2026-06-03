@@ -42,7 +42,14 @@
                 <div class="agenda-layout">
                     <div class="agenda-list-box">
                         <div class="filter-header">
-                            <i class="ph ph-funnel"></i> Filtrar <i class="ph ph-caret-down"></i>
+                            <i class="ph ph-funnel" id="filtro"></i> 
+                            <select id="filtro-agenda" onchange="filtrarAgenda()">
+                                <option value="Todos">Todos</option>
+                                <option value="Consulta">Consulta</option>
+                                <option value="Retorno">Retorno</option>
+                                <option value="Exame">Exames</option>
+                            </select>
+                            <i class="ph-bold ph-caret-down" id="down"></i>
                         </div>
                         <div class="lista-agenda">
                             <div class="lista-card solid">
@@ -112,6 +119,7 @@
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
         <script src="Js/calendario.js"></script>
+        <script src="Js/agenda.js"></script>
         <script src="Js/sidebar.js"></script>
     </body>
 </html>

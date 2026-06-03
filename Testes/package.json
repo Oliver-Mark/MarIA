@@ -1,0 +1,12 @@
+{
+  "name": "maria-med",
+  "version": "1.0.0",
+  "description": "Sistema frontend de gestão hospitalar MarIA",
+  "scripts": {
+    "test": "cypress open",
+    "test:headless": "cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^13.6.0"
+  }
+}
