@@ -29,6 +29,7 @@
                         <li><a href="pacientes.html"><i class="ph-light ph-users"></i> <span class="menu-text">Pacientes</span></a></li>
                         <li><a href="assinatura_eletronica.html"><i class="ph-light ph-pen-nib"></i> <span class="menu-text">Assinatura Eletrônica</span></a></li>
                         <li><a href="dashboard.html"><i class="ph-light ph-chart-pie-slice"></i> <span class="menu-text">Dashboard</span></a></li>
+                        <li id="menu-cadastro" style="display: none;"><a href="cadastro.html"><i class="ph-light ph-folder-plus"></i> <span class="menu-text">Cadastro</span></a></li>
                     </ul>
                 </nav>
                 
@@ -44,8 +45,8 @@
                 <header class="top-head">
                     <div class="user-infor">
                         <img class="foto-usuario" src="" style="display: none; width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
-                        <i class="ph-fill ph-user-circle" style="display: block;"></i>
-                        <h2>Olá, Dra. Sandra!</h2>
+                        <i id="boas-vindas-icone" class="ph-fill ph-user-circle" style="display: block;"></i>
+                        <h2 id="boas-vindas-nome">Olá, Dra. Sandra!</h2>
                     </div>
                     <button class="btn-maria-ia">
                         MarIA <i class="ph-fill ph-robot"></i>
@@ -78,5 +79,59 @@
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
         <script src="Js/calendario.js"></script>
+        <script src="Js/sidebar.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+                const nomeEl = document.getElementById('boas-vindas-nome');
+                const iconeEl = document.getElementById('boas-vindas-icone');
+                const fotos = document.querySelectorAll('.foto-usuario');
+
+                if (usuarioLogado) {
+                    if (usuarioLogado.perfil === 'admin') {
+                        if (nomeEl) nomeEl.innerText = 'Olá, Marcos!';
+                        const config = JSON.parse(localStorage.getItem('maria_config_' + usuarioLogado.email)) || {};
+                        if (!config.foto) {
+                            fotos.forEach(foto => {
+                                foto.src = 'https://ui-avatars.com/api/?name=Marcos+Andrade&background=2D3748&color=fff&size=100';
+                                foto.style.display = 'block';
+                            });
+                            if (iconeEl) iconeEl.style.display = 'none';
+                        }
+                    } else if (usuarioLogado.perfil === 'recepcao') {
+                        const funcionarios = JSON.parse(localStorage.getItem('funcionarios_maria')) || [];
+                        const funcionario = funcionarios.find(f => f.email === usuarioLogado.email);
+                        if (funcionario) {
+                            if (nomeEl) nomeEl.innerText = `Olá, ${funcionario.nome.split(' ')[0]}!`;
+                            const config = JSON.parse(localStorage.getItem('maria_config_' + usuarioLogado.email)) || {};
+                            if (!config.foto) {
+                                fotos.forEach(foto => {
+                                    foto.src = funcionario.foto || `https://ui-avatars.com/api/?name=${encodeURIComponent(funcionario.nome)}&background=5DAEE0&color=fff&size=100`;
+                                    foto.style.display = 'block';
+                                });
+                                if (iconeEl) iconeEl.style.display = 'none';
+                            }
+                        }
+                    } else if (usuarioLogado.perfil === 'medico') {
+                        const medicos = JSON.parse(localStorage.getItem('medicos_maria')) || [];
+                        const medico = medicos.find(m => m.email === usuarioLogado.email);
+                        if (medico) {
+                            if (nomeEl) {
+                                let titulo = medico.sexo === 'Feminino' ? 'Dra.' : 'Dr.';
+                                nomeEl.innerText = `Olá, ${titulo} ${medico.nome.split(' ')[0]}!`;
+                            }
+                            const config = JSON.parse(localStorage.getItem('maria_config_' + usuarioLogado.email)) || {};
+                            if (!config.foto) {
+                                fotos.forEach(foto => {
+                                    foto.src = medico.foto || `https://ui-avatars.com/api/?name=${encodeURIComponent(medico.nome)}&background=5DAEE0&color=fff&size=100`;
+                                    foto.style.display = 'block';
+                                });
+                                if (iconeEl) iconeEl.style.display = 'none';
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
     </body>
 </html>

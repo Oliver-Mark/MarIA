@@ -31,6 +31,7 @@
                     <li><a href="pacientes.html"><i class="ph-light ph-users"></i> <span class="menu-text">Pacientes</span></a></li>
                     <li><a href="assinatura_eletronica.html"><i class="ph-light ph-pen-nib"></i> <span class="menu-text">Assinatura Eletrônica</span></a></li>
                     <li><a href="dashboard.html"><i class="ph-light ph-chart-pie-slice"></i> <span class="menu-text">Dashboard</span></a></li>
+                    <li id="menu-cadastro" style="display: none;"><a href="cadastro.html"><i class="ph-light ph-folder-plus"></i> <span class="menu-text">Cadastro</span></a></li>
                 </ul>
             </nav>
             
@@ -87,37 +88,60 @@
                             </div>
                         </div>
 
-                        <div class="form-grid-3">
-                            <div class="input-group">
-                                <label>CRM</label>
-                                <input type="text" value="45298-GO" readonly>
-                            </div>
-                            <div class="input-group">
-                                <label>RQE</label>
-                                <input type="text" value="12874" readonly>
-                            </div>
+                        <div class="form-grid-3" id="linha-pessoais-1">
                             <div class="input-group">
                                 <label>CPF</label>
-                                <input type="text" value="000.000.000-00" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-grid-2">
-                            <div class="input-group">
-                                <label>Especialidade</label>
-                                <input type="text" value="Cardiologia/Medicina Intensiva" readonly>
+                                <input type="text" id="input-cpf" value="000.000.000-00" readonly>
                             </div>
                             <div class="input-group">
                                 <label>Gênero</label>
-                                <select disabled>
+                                <select id="input-genero" disabled>
                                     <option>Feminino</option>
                                     <option>Masculino</option>
-                                    <option>Outro</option>
+                                    <option>Prefiro não informar</option>
                                 </select>
+                            </div>
+                            <div class="input-group campo-comum">
+                                <label>Data de Nascimento</label>
+                                <input type="date" id="input-data-nasc" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-3 campo-comum" style="margin-top: 15px;">
+                            <div class="input-group">
+                                <label>RG</label>
+                                <input type="text" id="input-rg" readonly>
+                            </div>
+                            <div class="input-group campo-funcionario">
+                                <label>Cargo</label>
+                                <input type="text" id="input-cargo" readonly>
+                            </div>
+                            <div class="input-group campo-funcionario">
+                                <label>PIS/NIS</label>
+                                <input type="text" id="input-pis" readonly>
+                            </div>
+                            <div class="input-group campo-medico">
+                                <label>CRM</label>
+                                <input type="text" id="input-crm" readonly>
+                            </div>
+                            <div class="input-group campo-medico">
+                                <label>RQE</label>
+                                <input type="text" id="input-rqe" readonly>
+                            </div>
+                            <div class="input-group campo-medico">
+                                <label>CNPJ</label>
+                                <input type="text" id="input-cnpj" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2" style="margin-top: 15px;">
+                            <div class="input-group campo-medico">
+                                <label>Especialidade</label>
+                                <input type="text" id="input-especialidade" readonly>
                             </div>
                             <div class="input-group">
                                 <label>E-mail Institucional</label>
-                                <input type="email" value="s.helena@hospitalcentral.com.br" readonly>
+                                <input type="email" id="input-email-institucional" value="s.helena@hospitalcentral.com.br" readonly>
                             </div>
                             <div class="input-group">
                                 <label>E-mail de Recuperação</label>
@@ -125,9 +149,47 @@
                             </div>
                         </div>
 
-                        <hr class="divisor">
+                        <hr class="divisor campo-comum">
 
-                        <div class="form-grid-2">
+                        <h3 class="campo-comum" style="color: #5DAEE0; font-size: 18px; margin-bottom: 15px;">Endereço</h3>
+                        <div class="form-grid-3 campo-comum" style="margin-bottom: 15px;">
+                            <div class="input-group">
+                                <label>CEP</label>
+                                <input type="text" id="input-cep" readonly>
+                            </div>
+                            <div class="input-group" style="grid-column: span 2;">
+                                <label>Logradouro</label>
+                                <input type="text" id="input-logradouro" readonly>
+                            </div>
+                        </div>
+                        <div class="form-grid-3 campo-comum" style="margin-bottom: 15px;">
+                            <div class="input-group">
+                                <label>Número</label>
+                                <input type="text" id="input-numero" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>Complemento</label>
+                                <input type="text" id="input-complemento" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>Bairro</label>
+                                <input type="text" id="input-bairro" readonly>
+                            </div>
+                        </div>
+                        <div class="form-grid-2 campo-comum">
+                            <div class="input-group">
+                                <label>Cidade</label>
+                                <input type="text" id="input-cidade" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>Estado</label>
+                                <input type="text" id="input-estado" readonly>
+                            </div>
+                        </div>
+
+                        <hr class="divisor campo-medico">
+
+                        <div class="form-grid-2 campo-medico">
                             <div class="input-group">
                                 <label>Status do Certificado Digital</label>
                                 <input type="text" value="Ativo (Válido até 12/2026)" readonly>
@@ -317,5 +379,6 @@
     </div>
 
     <script src="Js/configuracoes.js"></script>
+    <script src="Js/sidebar.js"></script>
 </body>
 </html>

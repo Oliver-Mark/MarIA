@@ -13,6 +13,90 @@ body {
 }
 
 /* =========================================
+   SIDEBAR SUBMENUS (Super Admin)
+   ========================================= */
+.menu-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar ul.sub-menu {
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.sidebar .menu-group.open ul.sub-menu {
+    display: flex;
+}
+
+.setinha {
+    margin-left: auto;
+    margin-right: 10px;
+    transition: transform 0.3s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sidebar:hover .setinha, .sidebar.mantem-aberto .setinha {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-group.open .setinha {
+    transform: rotate(180deg);
+}
+
+.sidebar:hover .sub-menu a, .sidebar.mantem-aberto .sub-menu a {
+    padding-left: 40px; /* Recuo extra para destacar que é um submenu */
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Diminui o tamanho dos ícones especificamente dentro do submenu */
+.sidebar .sub-menu i {
+    font-size: 24px;
+    min-width: 24px;
+}
+
+/* Esconde os submenus quando a sidebar está recolhida */
+.sidebar:not(:hover):not(.mantem-aberto) .sub-menu {
+    display: none !important;
+}
+
+/* Destaque sutil para a pasta principal quando ela contém a página ativa (Menu expandido) */
+.sidebar:hover .menu-group.has-active > .menu-toggle, .sidebar.mantem-aberto .menu-group.has-active > .menu-toggle {
+    background-color: rgba(255, 255, 255, 0.15);
+    font-weight: bold;
+}
+
+/* Hover mais tranquilo para as opções principais quando já estão selecionadas */
+.sidebar .menu-group.has-active > .menu-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: #F7FAFC !important;
+}
+
+/* Quando a barra recolhe, a pasta principal "puxa" a seleção branca com curvas para si */
+.sidebar:not(:hover):not(.mantem-aberto) .menu-group.has-active > .menu-toggle {
+    background-color: #F7FAFC;
+    color: #5DAEE0;
+    border-radius: 30px 0 0 30px;
+}
+
+.sidebar:not(:hover):not(.mantem-aberto) .menu-group.has-active > .menu-toggle::before {
+    content: ""; position: absolute; bottom: 100%; right: 0; width: 25px; height: 25px;
+    background-color: transparent; border-bottom-right-radius: 50%;
+    box-shadow: 10px 10px 0 0 #F7FAFC; pointer-events: none;
+}
+
+.sidebar:not(:hover):not(.mantem-aberto) .menu-group.has-active > .menu-toggle::after {
+    content: ""; position: absolute; top: 100%; right: 0; width: 25px; height: 25px;
+    background-color: transparent; border-top-right-radius: 50%;
+    box-shadow: 10px -10px 0 0 #F7FAFC; pointer-events: none;
+}
+
+/* =========================================
    OVERRIDE DO TEMA ESCURO (DARK MODE)
    ========================================= */
 body.dark-theme {
@@ -49,6 +133,7 @@ body.dark-theme th {
 /* Containers, Cards, e Elementos de Painel */
 body.dark-theme .card,
 body.dark-theme .card-paciente,
+body.dark-theme .card-cadastro,
 body.dark-theme .container-tabela,
 body.dark-theme .container-tabela table,
 body.dark-theme .lista-agenda,
@@ -92,6 +177,14 @@ body.dark-theme .app-container textarea {
     border-color: var(--borda-cor) !important;
 }
 
+/* Abas do Cadastro */
+body.dark-theme .aba {
+    color: var(--cor-texto-secundario) !important;
+}
+body.dark-theme .aba.active {
+    color: #5DAEE0 !important;
+}
+
 /* Menu Sidebar - Apenas Cores das Animações */
 body.dark-theme .sidebar a.active {
     background-color: var(--bg-fundo-tela) !important;
@@ -100,6 +193,29 @@ body.dark-theme .sidebar a.active {
 
 body.dark-theme .sidebar a.active::before { box-shadow: 10px 10px 0 0 var(--bg-fundo-tela) !important; }
 body.dark-theme .sidebar a.active::after { box-shadow: 10px -10px 0 0 var(--bg-fundo-tela) !important; }
+
+body.dark-theme .sidebar:hover .menu-group.has-active > .menu-toggle, 
+body.dark-theme .sidebar.mantem-aberto .menu-group.has-active > .menu-toggle {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Hover mais tranquilo no tema escuro */
+body.dark-theme .sidebar .menu-group.has-active > .menu-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: #FFFFFF !important;
+}
+
+/* Destaca a pasta pai recolhida no tema escuro */
+body.dark-theme .sidebar:not(:hover):not(.mantem-aberto) .menu-group.has-active > .menu-toggle {
+    background-color: var(--bg-fundo-tela) !important;
+    color: #5DAEE0 !important;
+}
+body.dark-theme .sidebar:not(:hover):not(.mantem-aberto) .menu-group.has-active > .menu-toggle::before {
+    box-shadow: 10px 10px 0 0 var(--bg-fundo-tela) !important;
+}
+body.dark-theme .sidebar:not(:hover):not(.mantem-aberto) .menu-group.has-active > .menu-toggle::after {
+    box-shadow: 10px -10px 0 0 var(--bg-fundo-tela) !important;
+}
 
 /* Hover no menu - Tom de preto puxado pro cinza e texto branco */
 body.dark-theme .nav-menu a:hover:not(.active),
@@ -120,7 +236,8 @@ body.dark-theme .lista-card.outline {
 }
 
 /* Dropdown do filtro da agenda em Dark Mode */
-body.dark-theme #filtro-agenda option {
+body.dark-theme #filtro-agenda option,
+body.dark-theme #filtro-medico option {
     background-color: var(--bg-painel) !important;
     color: var(--cor-texto-principal) !important;
 }

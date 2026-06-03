@@ -28,6 +28,7 @@
                         <li><a href="pacientes.html"><i class="ph-light ph-users"></i> <span class="menu-text">Pacientes</span></a></li>
                         <li><a href="assinatura_eletronica.html"><i class="ph-light ph-pen-nib"></i> <span class="menu-text">Assinatura Eletrônica</span></a></li>
                         <li><a href="dashboard.html"><i class="ph-light ph-chart-pie-slice"></i> <span class="menu-text">Dashboard</span></a></li>
+                        <li id="menu-cadastro" style="display: none;"><a href="cadastro.html"><i class="ph-light ph-folder-plus"></i> <span class="menu-text">Cadastro</span></a></li>
                     </ul>
                 </nav>                
                 <nav class="nav-bottom">
@@ -66,64 +67,8 @@
                                 <th>Ações / Situação</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="paciente-row" data-status="aguardando">
-                                <td>08:30</td>
-                                <td>09:30</td>
-                                <td>João Pedro Santos</td>
-                                <td>Consulta</td>
-                                <td class="celula-acao">
-                                    <button class="btn-chamar">Chamar</button>
-                                    <button class="btn-atender" onclick="window.location.href='triagem.html'">Atender</button>
-                                </td>
-                            </tr>
-                            <tr class="paciente-row" data-status="em-atendimento">
-                                <td>09:53</td>
-                                <td>10:00</td>
-                                <td>Maria Eduarda</td>
-                                <td>Retorno</td>
-                                <td class="celula-acao">
-                                    <span class="status-em-atendimento">Em Atendimento</span>
-                                </td>
-                            </tr>
-                            <tr class="paciente-row" data-status="aguardando">
-                                <td>10:15</td>
-                                <td>11:00</td>
-                                <td>Ana Beatriz Oliveira</td>
-                                <td>Consulta</td>
-                                <td class="celula-acao">
-                                    <button class="btn-chamar">Chamar</button>
-                                    <button class="btn-atender" onclick="window.location.href='triagem.html'">Atender</button>
-                                </td>
-                            </tr>
-                            <tr class="paciente-row" data-status="atendido">
-                                <td>10:21</td>
-                                <td>10:30</td>
-                                <td>Carlos Augusto</td>
-                                <td>Exame</td>
-                                <td class="celula-acao">
-                                    <span class="status-atendido">Atendido</span>
-                                </td>
-                            </tr>
-                            <tr class="paciente-row" data-status="aguardando">
-                                <td>10:30</td>
-                                <td>XXX</td>
-                                <td>Marcos Rocha</td>
-                                <td>Consulta</td>
-                                <td class="celula-acao">
-                                    <button class="btn-chamar">Chamar</button>
-                                    <button class="btn-atender" onclick="window.location.href='triagem.html'">Atender</button>
-                                </td>
-                            </tr>
-                            <tr class="paciente-row" data-status="atendido">
-                                <td>10:47</td>
-                                <td>XXX</td>
-                                <td>José Mendes</td>
-                                <td>Exame</td>
-                                <td class="celula-acao">
-                                    <span class="status-atendido">Atendido</span>
-                                </td>
-                            </tr>
+                        <tbody id="tabela-sala-espera-body">
+                            <!-- Preenchido via JS -->
                         </tbody>
                     </table>
                 </div>

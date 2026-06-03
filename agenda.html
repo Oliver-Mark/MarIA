@@ -28,6 +28,7 @@
                         <li><a href="pacientes.html"><i class="ph-light ph-users"></i> <span class="menu-text">Pacientes</span></a></li>
                         <li><a href="assinatura_eletronica.html"><i class="ph-light ph-pen-nib"></i> <span class="menu-text">Assinatura Eletrônica</span></a></li>
                         <li><a href="dashboard.html"><i class="ph-light ph-chart-pie-slice"></i> <span class="menu-text">Dashboard</span></a></li>
+                        <li id="menu-cadastro" style="display: none;"><a href="cadastro.html"><i class="ph-light ph-folder-plus"></i> <span class="menu-text">Cadastro</span></a></li>
                     </ul>
                 </nav>                
                 <nav class="nav-bottom">
@@ -41,6 +42,13 @@
             <main class="main-content">
                 <div class="agenda-layout">
                     <div class="agenda-list-box">
+                        <div class="filter-header" id="container-filtro-medico" style="display: none; margin-bottom: 15px;">
+                            <i class="ph ph-user" id="filtro-icone-medico"></i> 
+                            <select id="filtro-medico" onchange="selecionarMedicoAgenda()">
+                                <option value="">Selecione o Médico</option>
+                            </select>
+                            <i class="ph-bold ph-caret-down" id="down-medico"></i>
+                        </div>
                         <div class="filter-header">
                             <i class="ph ph-funnel" id="filtro"></i> 
                             <select id="filtro-agenda" onchange="filtrarAgenda()">

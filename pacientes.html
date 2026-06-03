@@ -28,6 +28,7 @@
                         <li><a href="#" class="active"><i class="ph-light ph-users"></i> <span class="menu-text">Pacientes</span></a></li>
                         <li><a href="assinatura_eletronica.html"><i class="ph-light ph-pen-nib"></i> <span class="menu-text">Assinatura Eletrônica</span></a></li>
                         <li><a href="dashboard.html"><i class="ph-light ph-chart-pie-slice"></i> <span class="menu-text">Dashboard</span></a></li>
+                        <li id="menu-cadastro" style="display: none;"><a href="cadastro.html"><i class="ph-light ph-folder-plus"></i> <span class="menu-text">Cadastro</span></a></li>
                     </ul>
                 </nav>                
                 <nav class="nav-bottom">
@@ -49,9 +50,10 @@
                     
                     <div class="secao-pesquisa">
                         <div class="caixa-pesquisa">
-                            <input type="text" placeholder="Informe o nome ou CPF...">
-                            <button class="btn-pesquisar"><i class="ph-bold ph-magnifying-glass"></i> Pesquisar</button>
+                            <input type="text" id="input-pesquisa-paciente" placeholder="Informe o nome ou CPF...">
+                            <button class="btn-pesquisar" onclick="pesquisarPacientes()"><i class="ph-bold ph-magnifying-glass"></i> Pesquisar</button>
                         </div>
+                        <button class="btn-novo" id="btn-novo-paciente" onclick="abrirNovoPaciente()" style="display: none;"><i class="ph-bold ph-user-plus"></i> Novo Paciente</button>
                     </div>
 
                     <div class="container-tabela">
@@ -63,66 +65,134 @@
                                     <th style="width: 20%;">Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>João Pedro Santos</td>
-                                    <td>000.000.000-00</td>
-                                    <td class="celula-acoes">
-                                        <button class="btn-visualizar" onclick="abrirFicha()"><i class="ph-bold ph-file-text"></i> Visualizar ficha</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Maria Eduarda Oliveira</td>
-                                    <td>111.222.333-44</td>
-                                    <td class="celula-acoes">
-                                        <button class="btn-visualizar" onclick="abrirFicha()"><i class="ph-bold ph-file-text"></i> Visualizar ficha</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Carlos Augusto Pereira</td>
-                                    <td>555.666.777-88</td>
-                                    <td class="celula-acoes">
-                                        <button class="btn-visualizar" onclick="abrirFicha()"><i class="ph-bold ph-file-text"></i> Visualizar ficha</button>
-                                    </td>
-                                </tr>
+                            <tbody id="tabela-lista-pacientes">
+                                <!-- Preenchido via JS -->
                             </tbody>
                         </table>
                     </div>
                 </div>
 
+                <div id="novo-paciente-view" style="display: none;">
+                    <button class="btn-voltar" onclick="voltarParaLista()"><i class="ph-bold ph-arrow-left"></i> Voltar para a pesquisa</button>
+                    
+                    <div class="card-paciente">
+                        <form id="form-novo-paciente">
+                            <h3 style="padding: 30px 30px 0 30px; margin-bottom: 0;">Cadastro de Paciente</h3>
+                            <div class="secao-cadastro">
+                                <div class="foto-paciente" style="width: 150px; height: 150px;">
+                                    <img id="foto-novo-paciente-preview" src="https://ui-avatars.com/api/?name=Novo+Paciente&background=E2E8F0&color=A0AEC0&size=150" alt="Foto">
+                                </div>
+                                <div class="input-group" style="justify-content: center;">
+                                    <label>Foto de Perfil (JPG, PNG)</label>
+                                    <input type="file" id="foto-novo-paciente" accept=".png, .jpg, .jpeg" onchange="previewFotoNovoPaciente(event)">
+                                </div>
+                            </div>
+                            
+                            <div class="secao-outras-informacoes">
+                                <h3>Dados Pessoais</h3>
+                                <div class="grade-outras-informacoes">
+                                    <div class="input-group" style="grid-column: span 2;">
+                                        <label>Nome Completo <span class="obrigatorio">*</span></label>
+                                        <input type="text" id="nome-paciente" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Data de Nascimento <span class="obrigatorio">*</span></label>
+                                        <input type="date" id="data-nasc-paciente" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Sexo <span class="obrigatorio">*</span></label>
+                                        <select id="sexo-paciente" required>
+                                            <option value="">Selecione...</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Feminino">Feminino</option>
+                                            <option value="Prefiro não informar">Prefiro não informar</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>CPF <span class="obrigatorio">*</span></label>
+                                        <input type="text" id="cpf-paciente" maxlength="14" placeholder="000.000.000-00" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>RG</label>
+                                        <input type="text" id="rg-paciente">
+                                    </div>
+                                    <div class="input-group col-contato">
+                                        <label>Número de Contato <span class="obrigatorio">*</span></label>
+                                        <input type="text" id="contato-paciente" placeholder="(00) 00000-0000" required>
+                                    </div>
+                                    <div class="input-group col-email">
+                                        <label>E-mail</label>
+                                        <input type="email" id="email-paciente">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="secao-outras-informacoes" style="border-bottom: none;">
+                                <h3>Endereço</h3>
+                                <div class="grade-outras-informacoes">
+                                    <div class="input-group col-cep">
+                                        <label>CEP <span class="obrigatorio">*</span></label>
+                                        <input type="text" id="cep-paciente" maxlength="9" onblur="buscarCEPPaciente()" placeholder="Somente números" required>
+                                    </div>
+                                    <div class="input-group col-logradouro"><label>Logradouro <span class="obrigatorio">*</span></label><input type="text" id="logradouro-paciente" required></div>
+                                    <div class="input-group col-numero"><label>Número <span class="obrigatorio">*</span></label><input type="text" id="numero-paciente" required></div>
+                                    <div class="input-group col-complemento"><label>Complemento</label><input type="text" id="complemento-paciente"></div>
+                                    <div class="input-group col-bairro"><label>Bairro <span class="obrigatorio">*</span></label><input type="text" id="bairro-paciente" required></div>
+                                    <div class="input-group col-cidade"><label>Cidade <span class="obrigatorio">*</span></label><input type="text" id="cidade-paciente" required></div>
+                                    <div class="input-group col-uf"><label>Estado <span class="obrigatorio">*</span></label><input type="text" id="estado-paciente" required></div>
+                                </div>
+                                <div style="display: flex; justify-content: flex-end; margin-top: 30px;">
+                                    <button type="submit" class="btn-nova" style="font-size: 16px;">Salvar Paciente</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
                 <div id="ficha-paciente-view" style="display: none;">
                     
-                    <button class="btn-voltar" onclick="voltarParaLista()"><i class="ph-bold ph-arrow-left"></i> Voltar para a pesquisa</button>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <button class="btn-voltar" onclick="voltarParaLista()" style="margin-bottom: 0;"><i class="ph-bold ph-arrow-left"></i> Voltar para a pesquisa</button>
+                        <div style="display: flex; gap: 10px;">
+                            <button id="btn-editar-paciente" class="btn-novo" style="display: none;" onclick="habilitarEdicaoPaciente()"><i class="ph-bold ph-pencil-simple"></i> Editar</button>
+                            <button id="btn-salvar-paciente" class="btn-nova" style="display: none;" onclick="salvarEdicaoPaciente()"><i class="ph-bold ph-check"></i> Salvar</button>
+                        </div>
+                    </div>
 
                     <div class="card-paciente">
                         <div class="secao-cadastro">
                             <div class="foto-paciente">
-                                <img src="https://i.pravatar.cc/300?img=11" alt="Foto do paciente">
+                                <img id="foto-ficha-paciente" src="https://i.pravatar.cc/300?img=11" alt="Foto do paciente">
                             </div>
                             <div class="grade-cadastro">
                                 <div class="input-group">
-                                    <label for="nome">Nome do Paciente</label>
-                                    <input id="nome" type="text" value="João Pedro Santos" readonly>
+                                    <label for="ficha-nome">Nome do Paciente</label>
+                                    <input id="ficha-nome" type="text" readonly>
                                 </div>
                                 <div class="input-group">
-                                    <label for="data_nasc">Data de nascimento</label>
-                                    <input id="data_nasc" type="text" value="16/04/1956" readonly>
+                                    <label for="ficha-data-nasc">Data de nascimento</label>
+                                    <input id="ficha-data-nasc" type="date" readonly>
                                 </div>
                                 <div class="input-group">
-                                    <label for="sexo">Sexo</label>
-                                    <input id="sexo" type="text" value="Masculino" readonly>
+                                    <label for="ficha-sexo">Sexo</label>
+                                    <select id="ficha-sexo" disabled>
+                                        <option value="">Selecione...</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Feminino">Feminino</option>
+                                        <option value="Prefiro não informar">Prefiro não informar</option>
+                                    </select>
                                 </div>
                                 <div class="input-group">
-                                    <label for="idade">Idade</label>
-                                    <input id="idade" type="text" value="70 anos (incompletos)" readonly>
+                                    <label for="ficha-idade">Idade</label>
+                                    <input id="ficha-idade" type="text" readonly>
                                 </div>
                                 <div class="input-group">
-                                    <label for="cpf">CPF</label>
-                                    <input id="cpf" type="text" value="000.000.000-00" readonly>
+                                    <label for="ficha-cpf">CPF</label>
+                                    <input id="ficha-cpf" type="text" readonly>
                                 </div>
                                 <div class="input-group">
-                                    <label for="convenio">Convênio</label>
-                                    <input id="convenio" type="text" value="Particular" readonly>
+                                    <label for="ficha-convenio">Convênio</label>
+                                    <input id="ficha-convenio" type="text" value="Particular" readonly>
                                 </div>
                             </div>
                         </div>
@@ -130,40 +200,40 @@
                             <h3>Outras Informações</h3>
                             <div class="grade-outras-informacoes">
                                 <div class="input-group col-cep">
-                                    <label for="cep">CEP</label>
-                                    <input id="cep" type="text" value="75000-000" readonly>
+                                    <label for="ficha-cep">CEP</label>
+                                    <input id="ficha-cep" type="text" readonly>
                                 </div>
                                 <div class="input-group col-logradouro">
-                                    <label for="logradouro">Logradouro</label>
-                                    <input id="logradouro" type="text" value="Rua das Flores" readonly>
+                                    <label for="ficha-logradouro">Logradouro</label>
+                                    <input id="ficha-logradouro" type="text" readonly>
                                 </div>
                                 <div class="input-group col-numero">
-                                    <label for="numero">Número</label>
-                                    <input id="numero" type="text" value="123" readonly>
+                                    <label for="ficha-numero">Número</label>
+                                    <input id="ficha-numero" type="text" readonly>
                                 </div>
                                 <div class="input-group col-complemento">
-                                    <label for="complemento">Complemento</label>
-                                    <input id="complemento" type="text" value="Apt 101" readonly>
+                                    <label for="ficha-complemento">Complemento</label>
+                                    <input id="ficha-complemento" type="text" readonly>
                                 </div>
                                 <div class="input-group col-bairro">
-                                    <label for="bairro">Bairro</label>
-                                    <input id="bairro" type="text" value="Primavera" readonly>
+                                    <label for="ficha-bairro">Bairro</label>
+                                    <input id="ficha-bairro" type="text" readonly>
                                 </div>
                                 <div class="input-group col-cidade">
-                                    <label for="cidade">Cidade</label>
-                                    <input id="cidade" type="text" value="Anápolis" readonly>
+                                    <label for="ficha-cidade">Cidade</label>
+                                    <input id="ficha-cidade" type="text" readonly>
                                 </div>
                                 <div class="input-group col-uf">
-                                    <label for="uf">UF</label>
-                                    <input id="uf" type="text" value="GO" readonly>
+                                    <label for="ficha-uf">UF</label>
+                                    <input id="ficha-uf" type="text" readonly>
                                 </div>
                                 <div class="input-group col-contato">
-                                    <label for="contato">Número de Contato</label>
-                                    <input id="contato" type="text" value="(62) 99999-9999" readonly>
+                                    <label for="ficha-contato">Número de Contato</label>
+                                    <input id="ficha-contato" type="text" readonly>
                                 </div>
                                 <div class="input-group col-email">
-                                    <label for="email">E-mail</label>
-                                    <input id="email" type="text" value="joaopedro@email.com" readonly>
+                                    <label for="ficha-email">E-mail</label>
+                                    <input id="ficha-email" type="text" readonly>
                                 </div>
                                 
                             </div>
@@ -176,7 +246,7 @@
                                 <div class="item-historico">
                                     <span class="medico">Dr. Pedro Guimarães</span>
                                     <span class="especialidade"> Oftalmologista</span>
-                                    <span class="data"> - 12/03/2024</span>
+                                    <span class="data"> 12/03/2024</span>
                                     <button class="btn-ver"><i class="ph-bold ph-eye"></i></button>
                                 </div>
                             </div>

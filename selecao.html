@@ -25,22 +25,12 @@
                     <label for="clinica">Unidade</label><br>
                     <select id="clinica" name="clinica" class="select-estilizado" required>
                         <option value="" disabled selected>Selecione a clínica</option>
-                        <option value="centro">Clínica Centro</option>
-                        <option value="sul">Clínica Sul</option>
-                        <option value="leste">Clínica Leste</option>
-                        <option value="oeste">Clínica Oeste</option>
-                        <option value="norte">Clínica Norte</option>
                     </select>
                 </div>
                 <div class="campo">
                     <label for="consultorio">Consultório</label><br>
                     <select id="consultorio" name="consultorio" class="select-estilizado" required>
                         <option value="" disabled selected>Selecione o consultório</option>
-                        <option value="consultorio1">Consultório 1</option>
-                        <option value="consultorio2">Consultório 2</option>
-                        <option value="consultorio3">Consultório 3</option>
-                        <option value="consultorio4">Consultório 4</option>
-                        <option value="consultorio5">Consultório 5</option>
                     </select>
                 </div>
                 <button type="button" class="btn-continuar" onclick="window.location.href='tela_inicial.html'">
@@ -49,5 +39,33 @@
             </div>            
         </section>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clinicaSelect = document.getElementById('clinica'); 
+            const consultorioSelect = document.getElementById('consultorio'); 
+        
+            if (clinicaSelect && consultorioSelect) {
+                const clinicasCadastradas = JSON.parse(localStorage.getItem('clinicas_maria')) || [];
+                
+                clinicaSelect.innerHTML = '<option value="" disabled selected>Selecione a clínica</option>';
+                
+                clinicasCadastradas.forEach((clinica, index) => {
+                    clinicaSelect.innerHTML += `<option value="${index}">${clinica.nome}</option>`;
+                });
+        
+                clinicaSelect.addEventListener('change', (e) => {
+                    const indexSelecionado = e.target.value;
+                    consultorioSelect.innerHTML = '<option value="" disabled selected>Selecione o consultório</option>';
+                    
+                    if (indexSelecionado !== "") {
+                        const qtdConsultorios = clinicasCadastradas[indexSelecionado].qtdConsultorios;
+                        for (let i = 1; i <= qtdConsultorios; i++) {
+                            consultorioSelect.innerHTML += `<option value="consultorio${i}">Consultório ${i}</option>`;
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

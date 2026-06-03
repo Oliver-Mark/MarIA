@@ -246,8 +246,14 @@ body {
     color: #2D3748;
 }
 
+.obrigatorio {
+    color: #E53E3E;
+    margin-left: 2px;
+}
+
 .input-group input,
-.input-group textarea {
+.input-group textarea,
+.input-group select {
     padding: 8px 15px;
     border: 1px solid #5DAEE0;
     border-radius: 50px;
@@ -372,11 +378,6 @@ body {
     color: #2D3748;
     font-weight: 500;
     font-size: 14px;
-}
-
-.item-historico .especialidade {
-    flex-grow: 1;
-    text-align: center;
 }
 
 .btn-ver {
