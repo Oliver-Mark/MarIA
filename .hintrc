@@ -16,6 +16,7 @@
         "select-name": "off",
         "label": "off"
       }
-    ]
+    ],
+    "css-prefix-order": "off"
   }
 }
