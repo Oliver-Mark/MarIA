@@ -1,0 +1,11 @@
+.git
+.env
+.env.*
+!.env.example
+.venv
+node_modules
+tmp
+backups
+*.sqlite3
+*.dump
+*.log

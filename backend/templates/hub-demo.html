@@ -1,0 +1,103 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MarIA | Demonstração do HUB</title>
+    <link rel="stylesheet" href="{% static 'hub/demo.css' %}" />
+  </head>
+  <body>
+    <main>
+      <h1>MarIA · HUB de histórico autorizado</h1>
+      <p class="notice">
+        Protótipo acadêmico. Use somente dados fictícios. Esta tela representa
+        sistemas de clínicas conectados e o portal do paciente.
+      </p>
+      <p id="status" role="status" aria-live="polite">
+        Faça login para iniciar.
+      </p>
+      <section>
+        <h2>Acesso</h2>
+        <form id="login">
+          <label
+            >Usuário<input
+              id="username"
+              autocomplete="username"
+              required /></label
+          ><label
+            >Senha<input
+              id="password"
+              type="password"
+              autocomplete="current-password"
+              required /></label
+          ><button>Entrar</button
+          ><button type="button" id="logout">Sair</button>
+        </form>
+      </section>
+      <section id="clinical" hidden>
+        <h2>Sistema da clínica</h2>
+        <label>Clínica<select id="clinic"></select></label
+        ><button id="loadPatients">Carregar pacientes vinculados</button
+        ><label>Paciente<select id="patient"></select></label>
+        <h3>Enviar atendimento ao HUB</h3>
+        <form id="ingest">
+          <label
+            >Chave da integração<input
+              id="integrationKey"
+              type="password"
+              autocomplete="off"
+              required /></label
+          ><p>
+            Use a chave completa da clínica de origem, exibida pelo seed_demo.
+            Reexecutar o seed invalida as chaves anteriores.
+          </p
+          ><label
+            >Identificador do atendimento no sistema de origem<input
+              id="externalId"
+              value="consulta-demo-001"
+              required /></label
+          ><label
+            >Data e hora do atendimento<input
+              id="occurredAt"
+              type="datetime-local"
+              required /></label
+          ><label
+            >Resumo fictício<textarea id="summary" required>
+Consulta de demonstração, sem dados reais.</textarea
+            ></label
+          ><button>Enviar registro</button>
+        </form>
+        <h3>Solicitar acesso ao histórico externo</h3>
+        <form id="request">
+          <label
+            >Finalidade<input
+              id="purpose"
+              value="Continuidade do atendimento"
+              required /></label
+          ><label
+            >Validade até<input id="expiry" type="datetime-local" required
+          /></label>
+          <p>
+            Inclui somente registros anteriores disponíveis quando o paciente
+            aceitar. Solicitar não libera acesso.
+          </p>
+          <button>Enviar solicitação ao paciente</button>
+        </form>
+        <h3>Consultar histórico</h3>
+        <button id="history">Consultar pela API</button>
+        <pre id="records">Nenhuma consulta realizada.</pre>
+      </section>
+      <section id="portal" hidden>
+        <h2>Portal do paciente</h2>
+        <button id="loadGrants">Atualizar solicitações e autorizações</button>
+        <div id="grants"></div>
+      </section>
+      <section>
+        <h2>Resposta da última operação</h2>
+        <pre id="response">Aguardando operação.</pre>
+      </section>
+      <script src="{% static 'hub/demo.js' %}" defer></script>
+    </main>
+  </body>
+</html>

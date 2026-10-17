@@ -1,0 +1,129 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pacientes • MarIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/pacientes.css' %}">
+  <link rel="stylesheet" href="{% static 'css/hub.css' %}?v=20261017-profile">
+  <script type="module" src="{% static 'Js/hub.js' %}?v=20261017-profile"></script>
+</head>
+<body class="hub-app">
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6M21 21v-3a6 6 0 0 0-3-5"/></symbol>
+    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6"/></symbol>
+    <symbol id="exit" viewBox="0 0 24 24"><path d="M9 4H4v16h5M9 12h12m-5-5 5 5-5 5"/></symbol>
+    <symbol id="search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></symbol>
+    <symbol id="plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+    <symbol id="refresh-icon" viewBox="0 0 24 24"><path d="M20 9a8 8 0 1 0 0 6M20 3v6h-6"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+  </defs></svg>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="logo"><a href="/hub/" class="logo-link"><img src="{% static 'img/Logo_mini_plus.png' %}" alt="MarIA"></a></div>
+      <nav class="nav-menu" aria-label="Principal"><ul>
+        <li><a id="nav-patients" href="#patients" class="active" aria-label="Pacientes"><svg class="icon"><use href="#users"/></svg><span class="menu-text">Pacientes</span></a></li>
+        <li><a id="nav-history" href="#my-history" aria-label="Meu histórico" hidden><svg class="icon"><use href="#users"/></svg><span class="menu-text">Meu histórico</span></a></li>
+        <li><a id="nav-requests" href="#requests" aria-label="Autorizações"><svg class="icon"><use href="#shield"/></svg><span class="menu-text">Autorizações</span></a></li>
+        <li><a id="nav-profile" href="#profile" aria-label="Meu perfil"><svg class="icon"><use href="#users"/></svg><span class="menu-text">Meu perfil</span></a></li>
+      </ul></nav>
+      <nav class="nav-bottom" aria-label="Sessão"><ul><li><button id="logout" type="button" aria-label="Sair"><svg class="icon"><use href="#exit"/></svg><span class="menu-text">Sair</span></button></li></ul></nav>
+    </aside>
+    <main class="main-content" id="workspace" hidden>
+      <header class="hub-header">
+        <div><span class="eyebrow">CONTINUIDADE DO CUIDADO</span><h1 id="greeting">Meus pacientes</h1><p id="welcome">Seu acompanhamento, em um só lugar.</p></div>
+        <div class="account"><span class="avatar" id="account-initials" aria-hidden="true"></span><div><strong id="account-name"></strong><span id="account-role"></span></div></div>
+      </header>
+      <p id="status" role="status" aria-live="polite" hidden></p>
+      <section id="profile-view" class="history-section" hidden>
+        <div class="section-heading"><div><h2>Meu perfil</h2><p>Confira e mantenha seus dados pessoais atualizados.</p></div><span id="profile-kind" class="badge neutral"></span></div>
+        <p>Usuário de acesso: <strong id="profile-username"></strong></p>
+        <form id="profile-form" class="profile-form">
+          <label class="input-group">Nome completo<input name="full_name" autocomplete="name" maxlength="150" required></label>
+          <label class="input-group">E-mail de contato<input name="email" type="email" autocomplete="email"></label>
+          <label class="input-group">Telefone<input name="phone" type="tel" autocomplete="tel" maxlength="30"></label>
+          <fieldset id="profile-patient-fields" hidden><legend>Dados do paciente</legend>
+            <label class="input-group">Data de nascimento<input name="birth_date" type="date"></label>
+            <p>Identificador MarIA: <strong id="profile-patient-id"></strong></p>
+          </fieldset>
+          <fieldset id="profile-doctor-fields" hidden><legend>Dados profissionais</legend>
+            <p id="profile-professional-status"></p>
+            <label class="input-group">Especialidade<input name="specialty" maxlength="120" placeholder="Informe sua área de atuação"></label>
+            <label class="input-group">CRM<input name="registration_number" inputmode="numeric" pattern="[0-9]*" maxlength="30"></label>
+            <label class="input-group">UF do CRM<select name="registration_state"><option value="">Selecione</option>{% for state in profile_states %}<option value="{{ state }}">{{ state }}</option>{% endfor %}</select></label>
+            <p class="helper">Especialidade e CRM são informações declaradas. O MarIA ainda não valida o registro no conselho profissional.</p>
+          </fieldset>
+          <p class="helper">O e-mail é de contato. O usuário de acesso e as permissões da conta não são alterados neste formulário.</p>
+          <p id="profile-status" role="status" aria-live="polite"></p>
+          <button id="save-profile" class="primary" type="submit">Salvar perfil</button>
+        </form>
+      </section>
+      <section id="doctor" hidden>
+        <div class="hub-stats" aria-label="Resumo do acompanhamento">
+          <div><span>Pacientes acompanhados</span><strong id="patient-count">0</strong></div>
+          <div><span>Acessos pessoais ativos</span><strong id="active-count">0</strong></div>
+          <div><span>Aguardando autorização</span><strong id="pending-count">0</strong></div>
+        </div>
+        <section class="patient-section" aria-labelledby="patients-title">
+          <div class="section-heading"><div><h2 id="patients-title">Carteira de pacientes</h2><p>Acompanhe seus pacientes e consulte o histórico autorizado.</p></div>
+            <button id="new-request" type="button" class="btn-novo"><svg class="icon"><use href="#plus"/></svg>Solicitar acesso</button></div>
+          <div class="secao-pesquisa">
+            <label class="caixa-pesquisa"><svg class="icon"><use href="#search"/></svg><input id="patient-search" type="search" placeholder="Pesquisar paciente pelo nome…" aria-label="Pesquisar paciente pelo nome"></label>
+            <button id="refresh" type="button" class="secondary"><svg class="icon"><use href="#refresh-icon"/></svg>Atualizar acompanhamento</button>
+          </div>
+          <div class="container-tabela"><table><thead><tr><th>Paciente</th><th>Autorização pessoal</th><th>Acompanhamento</th></tr></thead><tbody id="patients"></tbody></table></div>
+          <p class="helper">O histórico compartilhado e novos atendimentos exigem autorização vigente. Seus próprios registros continuam disponíveis em “Meus atendimentos”.</p>
+        </section>
+        <section class="history-section" aria-labelledby="history-title"><div class="section-heading"><div><span class="eyebrow">CONTINUIDADE DO ATENDIMENTO</span><h2 id="history-title">Histórico do paciente</h2></div><span id="history-scope" class="badge neutral">Acesso pessoal</span></div>
+          <div id="records" class="history-content"><p class="empty-state">Selecione um paciente da carteira para consultar o histórico.</p></div>
+        </section>
+      </section>
+      <section id="patient-history" class="history-section" hidden><div class="section-heading"><div><h2>Meu histórico</h2><p>Atendimentos médicos e informações adicionadas por você, com autoria identificada.</p></div><button id="add-patient-record" type="button" class="primary">Adicionar documento ou informação</button></div><button id="refresh-my-history" class="secondary" type="button">Atualizar meu histórico</button><div id="patient-records" class="history-content"></div></section>
+      <section id="patient" class="patient-profile" hidden>
+        <span class="profile-icon"><svg class="icon"><use href="#shield"/></svg></span>
+        <div><h2>Você controla seu histórico</h2><p>Compartilhe seu identificador com o profissional que deseja acompanhar. Você decide quem pode consultar e por quanto tempo.</p><div class="patient-identifier"><span>Meu identificador MarIA</span><strong id="patient-id"></strong></div></div>
+        <button id="refresh-patient" type="button" class="secondary"><svg class="icon"><use href="#refresh-icon"/></svg>Atualizar solicitações</button>
+      </section>
+      <section id="requests" class="requests-section" hidden><div class="section-heading"><div><h2>Autorizações</h2><p id="grants-description">Solicitações de acesso e suas respectivas validades.</p></div><button id="new-authorization" type="button" class="primary" hidden>Nova solicitação</button></div><button id="refresh-authorizations" type="button" class="secondary">Atualizar autorizações</button><div id="grants"></div></section>
+      <footer>MarIA · Protótipo acadêmico com dados fictícios.</footer>
+    </main>
+  </div>
+  <dialog id="request-dialog" aria-labelledby="request-title">
+    <div class="section-heading"><div><span class="eyebrow">NOVO ACOMPANHAMENTO</span><h2 id="request-title">Solicitar acesso ao histórico</h2></div><button id="close-request" type="button" class="icon-button" aria-label="Fechar solicitação">×</button></div>
+    <p>O paciente receberá uma solicitação em seu portal. O acesso será pessoal, com finalidade e prazo definidos.</p>
+    <form id="grant-request">
+      <label class="input-group">Identificador MarIA do paciente<input name="patient_id" placeholder="Identificador compartilhado pelo paciente" required></label>
+      <label class="input-group">Finalidade do acompanhamento<textarea name="purpose" placeholder="Descreva o motivo da consulta ao histórico" maxlength="300" rows="3" required></textarea></label>
+      <label class="input-group">Prazo de acesso<select name="duration_days" required>{% for days in grant_durations %}<option value="{{ days }}"{% if days == 30 %} selected{% endif %}>{{ days }} dias</option>{% endfor %}</select></label>
+      <p class="helper">O prazo conta a partir do envio da solicitação. O acesso só começa após o aceite e termina na data indicada no termo.</p>
+      <p class="helper">Inclui somente os registros disponíveis no momento do aceite. O paciente pode revogar novos acessos.</p>
+      <p id="request-status" role="status" hidden></p>
+      <div class="dialog-actions"><button id="cancel-request" type="button" class="secondary">Cancelar</button><button type="submit" class="primary">Enviar solicitação ao paciente</button></div>
+    </form>
+  </dialog>
+  <dialog id="encounter-dialog" aria-labelledby="encounter-title">
+    <div class="section-heading"><h2 id="encounter-title">Registrar atendimento</h2><button id="close-encounter" type="button" class="icon-button" aria-label="Fechar atendimento">×</button></div>
+    <p>A autoria será vinculada à sua conta. O registro será incluído no histórico do paciente.</p>
+    <form id="encounter-form">
+      <label class="input-group">Data e hora do atendimento<input id="encounter-time" name="occurred_at" type="datetime-local" required></label>
+      <label class="input-group">Contexto do atendimento<select id="encounter-clinic" name="clinic_id"><option value="">Atendimento independente</option></select></label>
+      <label class="input-group">Descrição e informações complementares<textarea name="summary" rows="6" maxlength="10000" required></textarea></label>
+      <label class="input-group">Anexar documento (opcional)<input name="attachment" type="file" accept="application/pdf,image/jpeg,image/png,.pdf,.jpg,.jpeg,.png"></label>
+      <label class="input-group">Fotografar documento no celular (opcional)<input name="camera_attachment" type="file" accept="image/jpeg,image/png" capture="environment"></label>
+      <p class="helper">Um arquivo por registro, PDF, JPG ou PNG, até 10 MB. Escolha um arquivo ou fotografe o documento. A câmera depende do celular e do navegador; esta opção não faz recorte automático nem OCR.</p>
+      <p class="helper">Confira antes de salvar. Esta etapa ainda não oferece correção de registros. Autorizações anteriores de outros médicos não incluem automaticamente este novo registro.</p>
+      <p id="encounter-status" role="status" hidden></p>
+      <div class="dialog-actions"><button id="cancel-encounter" type="button" class="secondary">Cancelar</button><button type="submit" class="primary">Salvar registro</button></div>
+    </form>
+  </dialog>
+  <dialog id="document-dialog" aria-labelledby="document-title">
+    <div class="section-heading"><h2 id="document-title">Documento</h2><button id="close-document" class="icon-button" type="button" aria-label="Fechar documento">×</button></div>
+    <p class="helper">Visualização pessoal no MarIA. Não compartilhe o conteúdo. O acesso é conferido a cada página e periodicamente enquanto o documento estiver aberto.</p>
+    <div class="document-controls"><button id="document-previous" class="secondary" type="button" disabled>Página anterior</button><p id="document-status" role="status" aria-live="polite"></p><button id="document-next" class="secondary" type="button" disabled>Próxima página</button></div>
+    <div class="document-page"><img id="document-image" alt="Página do documento" draggable="false"></div>
+  </dialog>
+</body>
+</html>
